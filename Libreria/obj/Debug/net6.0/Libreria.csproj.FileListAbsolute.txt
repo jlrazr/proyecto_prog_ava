@@ -1,0 +1,5 @@
+D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\Libreria\obj\Debug\net6.0\Libreria.csproj.AssemblyReference.cache
+D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\Libreria\obj\Debug\net6.0\Libreria.GeneratedMSBuildEditorConfig.editorconfig
+D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\Libreria\obj\Debug\net6.0\Libreria.AssemblyInfoInputs.cache
+D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\Libreria\obj\Debug\net6.0\Libreria.AssemblyInfo.cs
+D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\Libreria\obj\Debug\net6.0\Libreria.csproj.CoreCompileInputs.cache

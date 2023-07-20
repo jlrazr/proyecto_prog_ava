@@ -1,0 +1,3 @@
+1. No se incluye un botón específico de consulta de platos registrados a restaurantes porque según el enunciado también se debe incluir una funcionalidad muy similar en la opción de "Registrar Platos por Restaurante", por lo que incluí ambas dentro de esa misma opción.
+
+2. Para registrar platos a un restaurante, por favor seleccione el o los platos haciendo click en la celda de la primera columna de izquierda a derecha correspondiente a la fila del plato que desea registrar. Se puede hacer selección múltiple para añadir todos los platos seleccionados en una sola operación.
