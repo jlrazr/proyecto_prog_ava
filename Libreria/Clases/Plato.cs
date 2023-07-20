@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
 
-namespace Tarea2.Clases
+namespace Libreria.Clases
 {
     public class Plato
     {

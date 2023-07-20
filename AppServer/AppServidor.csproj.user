@@ -1,8 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <Compile Update="Form1.cs">
-            <SubType>Form</SubType>
-        </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Forms\FormMensaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormMostrarCategPlatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormMostrarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormMostrarExtras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormMostrarPlatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormMostrarRestaurantes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormRegistrarCategPlato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormRegistrarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormRegistrarExtra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormRegistrarPlato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormRegistrarPlatoRestaurante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormRegistrarRestaurante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>

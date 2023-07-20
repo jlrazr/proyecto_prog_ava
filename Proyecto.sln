@@ -5,9 +5,9 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCliente", "AppCliente\AppCliente.csproj", "{B9ECC903-B8ED-45D4-8F9B-AE64DDA7EB6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServer", "AppServer\AppServer.csproj", "{7B6D6BAB-F85E-47F8-AA31-E14662849D19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppServidor", "AppServer\AppServidor.csproj", "{7B6D6BAB-F85E-47F8-AA31-E14662849D19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria", "Libreria\Libreria.csproj", "{45C123EE-CBE8-443F-B62A-F6FCE5F49C26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libreria", "Libreria\Libreria.csproj", "{45C123EE-CBE8-443F-B62A-F6FCE5F49C26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

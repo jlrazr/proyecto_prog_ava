@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
-using Tarea2.Clases;
+using Libreria.Clases;
 
-namespace Tarea2.Managers
+namespace Libreria.Managers
 {
     public class ManagerPlatos : IManager<Plato>
     {
