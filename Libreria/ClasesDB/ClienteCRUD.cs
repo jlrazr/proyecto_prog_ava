@@ -31,6 +31,7 @@ namespace Libreria.ClasesDB
 
             using (conexion = new(cadenaConexion))
             {
+
                 cmd.CommandType = CommandType.Text; //Para SQL embedded
                 cmd.CommandText = sentenciaSQL;
                 cmd.Connection = conexion;
@@ -44,7 +45,6 @@ namespace Libreria.ClasesDB
                 cmd.Parameters.AddWithValue("@Genero", cliente.Genero);
 
                 cmd.Connection.Open();
-
 
                 registroExitoso = cmd.ExecuteNonQuery() > 0;
 
