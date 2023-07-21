@@ -1,9 +1,9 @@
-﻿using AppServer.Forms;
+﻿using AppServidor.Forms;
 using System;
 using Libreria.Clases;
 using Libreria.Managers;
 
-namespace AppServer.Forms
+namespace AppServidor.Forms
 {
     public partial class FormRegistrarPlato : Form
     {

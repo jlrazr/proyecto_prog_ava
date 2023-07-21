@@ -13,7 +13,7 @@ using Libreria.Clases;
 using Libreria.Managers;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace AppServer.Forms
+namespace AppServidor.Forms
 {
     public partial class FormRegistrarPlatoRestaurante : Form
     {

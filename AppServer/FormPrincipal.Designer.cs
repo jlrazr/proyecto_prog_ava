@@ -1,4 +1,4 @@
-﻿namespace AppServer
+﻿namespace AppServidor
 {
     partial class FormPrincipal
     {

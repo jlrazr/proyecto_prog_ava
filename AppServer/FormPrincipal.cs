@@ -1,7 +1,7 @@
-using AppServer.Forms;
+using AppServidor.Forms;
 using Libreria.Managers;
 
-namespace AppServer
+namespace AppServidor
 {
     public partial class FormPrincipal : Form
     {

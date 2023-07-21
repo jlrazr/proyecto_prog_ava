@@ -1,15 +1,16 @@
 ﻿using System.ComponentModel;
-using AppServer.Forms;
+using AppServidor.Forms;
 using System;
 using Libreria.Clases;
 using Libreria.Managers;
 using Libreria.ClasesDB;
 
-namespace AppServer.Forms
+namespace AppServidor.Forms
 {
     public partial class FormRegistrarCliente : Form
     {
         private ManagerClientes managerClientes;
+
         public FormRegistrarCliente(ManagerClientes managerClientes)
         {
             InitializeComponent();
@@ -59,6 +60,9 @@ namespace AppServer.Forms
                 Cliente nuevoCliente = new(nombre, primApellido, segApellido, fechaNacim, genero);
 
                 // Registra el cliente
+                ClienteCRUD clienteCRUD = new();
+
+                clienteCRUD.GuardarCliente(nuevoCliente);
                 managerClientes.Registrar(nuevoCliente);
 
                 var mensaje = new FormMensaje("El cliente " + nombre + " " + primApellido + " ha sido añadido");
@@ -70,12 +74,6 @@ namespace AppServer.Forms
                 radioButton_reg_cliente_m.Checked = false;
                 radioButton_reg_cliente_f.Checked = false;
             }
-        }
-
-        private void button_connect_Click(object sender, EventArgs e)
-        {
-            bool intentarConeccion = ClienteCRUD.conecta();
-            Console.WriteLine(intentarConeccion);
         }
     }
 }

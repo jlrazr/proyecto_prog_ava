@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Libreria.Managers;
 
-namespace AppServer.Forms
+namespace AppServidor.Forms
 {
     public partial class FormMostrarExtras : Form
     {

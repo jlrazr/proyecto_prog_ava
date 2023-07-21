@@ -1,4 +1,4 @@
-﻿namespace AppServer.Forms
+﻿namespace AppServidor.Forms
 {
     partial class FormMostrarCategPlatos
     {

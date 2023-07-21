@@ -1,4 +1,4 @@
-﻿namespace AppServer.Forms
+﻿namespace AppServidor.Forms
 {
     partial class FormRegistrarCliente
     {
@@ -42,7 +42,6 @@
             radioButton_reg_cliente_f = new RadioButton();
             button_reg_cliente = new Button();
             panel_reg_cliente_radio_contenedor = new Panel();
-            button_connect = new Button();
             panel_reg_cliente_radio_contenedor.SuspendLayout();
             SuspendLayout();
             // 
@@ -169,22 +168,11 @@
             panel_reg_cliente_radio_contenedor.Size = new Size(401, 110);
             panel_reg_cliente_radio_contenedor.TabIndex = 13;
             // 
-            // button_connect
-            // 
-            button_connect.Location = new Point(12, 767);
-            button_connect.Name = "button_connect";
-            button_connect.Size = new Size(494, 95);
-            button_connect.TabIndex = 14;
-            button_connect.Text = "Prueba Conexion";
-            button_connect.UseVisualStyleBackColor = true;
-            button_connect.Click += button_connect_Click;
-            // 
             // FormRegistrarCliente
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(518, 904);
-            Controls.Add(button_connect);
             Controls.Add(panel_reg_cliente_radio_contenedor);
             Controls.Add(button_reg_cliente);
             Controls.Add(label6);
@@ -221,6 +209,5 @@
         private RadioButton radioButton_reg_cliente_f;
         private Button button_reg_cliente;
         private Panel panel_reg_cliente_radio_contenedor;
-        private Button button_connect;
     }
 }

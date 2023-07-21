@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Libreria.Managers;
 
-namespace AppServer.Forms
+namespace AppServidor.Forms
 {
     public partial class FormMostrarRestaurantes : Form
     {

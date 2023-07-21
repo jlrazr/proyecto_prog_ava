@@ -1,9 +1,9 @@
 ﻿using System;
-using AppServer.Forms;
+using AppServidor.Forms;
 using Libreria.Clases;
 using Libreria.Managers;
 
-namespace AppServer.Forms
+namespace AppServidor.Forms
 {
     public partial class FormRegistrarExtra : Form
     {
