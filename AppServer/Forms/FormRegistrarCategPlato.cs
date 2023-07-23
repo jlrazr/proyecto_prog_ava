@@ -16,7 +16,7 @@ namespace AppServidor.Forms
         private void button_reg_cat_plato_Click(object sender, EventArgs e)
         {
             string descripcion = textBox_reg_cat_descripcion.Text;
-            bool activo = checkBox_reg_cat_activa.Checked;
+            bool estado = checkBox_reg_cat_activa.Checked;
 
             //Validación de los datos
             if (descripcion == null || descripcion == "")
@@ -26,7 +26,7 @@ namespace AppServidor.Forms
             }
             else
             {
-                CategoriaPlato nuevaCategoria = new(descripcion, activo);
+                CategoriaPlato nuevaCategoria = new(descripcion, estado);
 
                 // Registra la categoría
                 managerCategPlatos.Registrar(nuevaCategoria);

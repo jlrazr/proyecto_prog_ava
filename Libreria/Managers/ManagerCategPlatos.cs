@@ -1,40 +1,47 @@
-﻿using System.Xml.Linq;
+﻿using Libreria.AccesoBD;
 using Libreria.Clases;
 
 namespace Libreria.Managers
 {
     public class ManagerCategPlatos
     {
-        private CategoriaPlato[] _categPlatos = new CategoriaPlato[20];
-        private int _cuentaCategPlatos = 0;
+        CrudCategPlatos crudCategPlatos;
 
-        public void Registrar(CategoriaPlato categoriaPlato)
+        public ManagerCategPlatos()
         {
-            if (_cuentaCategPlatos < 20)
+            this.crudCategPlatos = new();
+        }
+        public bool Registrar(CategoriaPlato categoriaPlato)
+        {
+            bool registroExitoso = false;
+
+            try
             {
-                _categPlatos[_cuentaCategPlatos++] = categoriaPlato;
-                Console.WriteLine("La categoría fue registrada con éxito.");
+                registroExitoso = crudCategPlatos.CrearCategoria(categoriaPlato);
+
+                return registroExitoso;
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("El número máximo de categorías (20) ya se ha alcanzado.");
+                System.Console.WriteLine(ex.Message);
+                return registroExitoso;
             }
         }
 
-        public CategoriaPlato[] GetTodos()
+        public List<CategoriaPlato> GetTodos()
         {
-            return _categPlatos;
+            return crudCategPlatos.ObtenerTodasCategPlato();
         }
 
         public CategoriaPlato GetPorId(int id)
         {
-            foreach (var categ in _categPlatos)
-            {
-                if (categ != null && categ.Id == id)
-                {
-                    return categ;
-                }
-            }
+            //foreach (var categ in _categPlatos)
+            //{
+            //    if (categ != null && categ.Id == id)
+            //    {
+            //        return categ;
+            //    }
+            //}
 
             return null;
         }

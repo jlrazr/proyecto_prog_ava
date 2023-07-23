@@ -1,25 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System;
-
-namespace Libreria.Clases
+﻿namespace Libreria.Clases
 {
     public class CategoriaPlato
     {
-        private static int SiguienteId = 1; // Compartida para todas las instancias
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Descripcion { get; set; }
-        public bool Activa { get; set; }
-
-
+        public bool Estado { get; set; }
 
         // Constructor
-        public CategoriaPlato(string descripcion, bool activa)
+        public CategoriaPlato(string descripcion, bool estado)
         {
-            Id = SiguienteId;
             Descripcion = descripcion;
-            Activa = activa;
-
-            SiguienteId++;
+            Estado = estado;
         }
 
         public override string ToString()
