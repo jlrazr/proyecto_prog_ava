@@ -6,8 +6,7 @@ namespace Libreria.Managers
     public class ManagerClientes : IManager<Cliente>
     {
         private Cliente[] _clientes = new Cliente[20];
-        private int _cuentaClientes = 0;
-
+        private int _cuentaClientes;
         public void Registrar(Cliente cliente)
         {
             if (_cuentaClientes < 20)

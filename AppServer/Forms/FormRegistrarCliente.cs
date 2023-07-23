@@ -62,8 +62,7 @@ namespace AppServidor.Forms
                 // Registra el cliente
                 ClienteCRUD clienteCRUD = new();
 
-                clienteCRUD.GuardarCliente(nuevoCliente);
-                managerClientes.Registrar(nuevoCliente);
+                clienteCRUD.CrearCliente(nuevoCliente);
 
                 var mensaje = new FormMensaje("El cliente " + nombre + " " + primApellido + " ha sido añadido");
                 mensaje.ShowDialog();
