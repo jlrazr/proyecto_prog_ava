@@ -5,26 +5,21 @@ namespace Libreria.Clases
 {
     public class Extra
     {
-        private static int SiguienteId = 1; // Compartida para todas las instancias 
-
-        public int ID { get; private set; }
+        public int Id { get; set; }
         public string Descripcion { get; set; }
 
-        public CategoriaPlato CategoriaPlato { get; set; }
-        public bool Activo { get; set; }
+        public int IdCategoria { get; set; }
+        public bool Estado { get; set; }
         public int Precio { get; set; }
 
 
         // Constructor
-        public Extra(string descripcion, CategoriaPlato categoriaPlato, bool activo, int precio)
+        public Extra(string descripcion, int categoriaPlato, bool activo, int precio)
         {
-            ID = SiguienteId;
             Descripcion = descripcion;
-            CategoriaPlato = categoriaPlato;
-            Activo = activo;
+            IdCategoria = categoriaPlato;
+            Estado = activo;
             Precio = precio;
-
-            SiguienteId++;
         }
     }
 }

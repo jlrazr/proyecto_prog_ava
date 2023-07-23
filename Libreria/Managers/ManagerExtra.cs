@@ -1,44 +1,59 @@
 ﻿using System.Xml.Linq;
+using Libreria.AccesoBD;
 using Libreria.Clases;
 
 namespace Libreria.Managers
 {
     public class ManagerExtra
     {
-        private Extra[] _extras;
-        private int _numeroExtras;
+        CrudExtras crudExtra;
 
         public ManagerExtra()
         {
-            _extras = new Extra[20];
-            _numeroExtras = 0;
+            this.crudExtra = new();
         }
 
-        public void RegistrarExtra(Extra extra)
+        public bool Registrar(Extra extra)
         {
-            if (_numeroExtras < 20)
+            bool registroExitoso = false;
+
+            try
             {
-                _extras[_numeroExtras] = extra;
-                _numeroExtras++;
+                registroExitoso = crudExtra.CrearExtra(extra);
+
+                return registroExitoso;
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return registroExitoso;
+            }
+        }
+
+        public List<Extra> GetTodos()
+        {
+            try
+            {
+                return crudExtra.ObtenerTodosExtra();
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
             }
         }
 
         public Extra GetPorId(int id)
         {
-            foreach (var extra in _extras)
+            try
             {
-                if (extra != null && extra.ID == id)
-                {
-                    return extra;
-                }
+                return crudExtra.ObtenerExtraPorId(id);
             }
-
-            return null;  // Devuelve null si no hay resultados
-        }
-
-        public Extra[] GetTodos()
-        {
-            return _extras;
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }

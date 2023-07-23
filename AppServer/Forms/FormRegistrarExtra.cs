@@ -41,25 +41,22 @@ namespace AppServidor.Forms
                     string descripcion = textBox_reg_extra_desc.Text;
                     int idCateg = int.Parse(textBox_reg_extra_idCateg.Text);
                     int precio = int.Parse(textBox_reg_extra_precio.Text);
-                    bool activa = checkBox_reg_extra_activa.Checked;
-                    CategoriaPlato categ;
+                    bool estado = checkBox_reg_extra_activa.Checked;
+                    CategoriaPlato categ = managerCategPlatos.GetPorId(idCateg);
 
-                    var validaCateg = managerCategPlatos.GetPorId(int.Parse(textBox_reg_extra_idCateg.Text));
-
-                    if (validaCateg == null)
+                    if (categ == null)
                     {
                         var mensaje = new FormMensaje("Error: El ID ingresado no corresponde a ninguna categoría");
                         mensaje.ShowDialog();
                     }
                     else
                     {
-                        categ = managerCategPlatos.GetPorId(idCateg);
-                        Extra nuevaExtra = new(descripcion, categ, activa, precio);
+                        Extra nuevaExtra = new(descripcion, categ.Id, estado, precio);
 
-                        // Registra la extra
-                        managerExtra.RegistrarExtra(nuevaExtra);
+                        // Registra el extra
+                        managerExtra.Registrar(nuevaExtra);
 
-                        var mensaje = new FormMensaje("La extra " + descripcion + " ha sido añadida");
+                        var mensaje = new FormMensaje("La extra plato " + descripcion + " ha sido añadida");
                         mensaje.ShowDialog();
 
                         textBox_reg_extra_desc.Text = "";

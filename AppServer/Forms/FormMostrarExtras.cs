@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Libreria.Clases;
 using Libreria.Managers;
 
 namespace AppServidor.Forms
@@ -23,7 +24,8 @@ namespace AppServidor.Forms
 
         private void FormMostrarExtra_Shown(object sender, EventArgs e)
         {
-            dataGridView_consul_extras.DataSource = managerExtra.GetTodos().Where(x => x != null).ToList();
+            List<Extra> extras = managerExtra.GetTodos();
+            dataGridView_consul_extras.DataSource = extras.Where(x => x != null).ToList();
         }
     }
 }
