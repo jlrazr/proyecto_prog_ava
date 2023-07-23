@@ -1,9 +1,6 @@
-﻿using System.ComponentModel;
-using AppServidor.Forms;
-using System;
-using Libreria.Clases;
+﻿using Libreria.Clases;
 using Libreria.Managers;
-using Libreria.ClasesDB;
+using Libreria.AccesoBD;
 
 namespace AppServidor.Forms
 {
@@ -60,9 +57,7 @@ namespace AppServidor.Forms
                 Cliente nuevoCliente = new(nombre, primApellido, segApellido, fechaNacim, genero);
 
                 // Registra el cliente
-                ClienteCRUD clienteCRUD = new();
-
-                clienteCRUD.CrearCliente(nuevoCliente);
+                managerClientes.Registrar(nuevoCliente);
 
                 var mensaje = new FormMensaje("El cliente " + nombre + " " + primApellido + " ha sido añadido");
                 mensaje.ShowDialog();

@@ -1,23 +1,33 @@
 ﻿using System.Xml.Linq;
+using Libreria.AccesoBD;
 using Libreria.Clases;
 
 namespace Libreria.Managers
 {
-    public class ManagerClientes : IManager<Cliente>
+    public class ManagerClientes
     {
-        private Cliente[] _clientes = new Cliente[20];
-        private int _cuentaClientes;
-        public void Registrar(Cliente cliente)
+        CrudClientes crudClientes;
+        public ManagerClientes() {
+            this.crudClientes = new();
+        }
+        public bool Registrar(Cliente cliente)
         {
-            if (_cuentaClientes < 20)
+            bool registroExitoso = false;
+
+            try
             {
-                _clientes[_cuentaClientes++] = cliente;
-            }
+                registroExitoso = crudClientes.CrearCliente(cliente);
+
+                return registroExitoso;
+            } catch (Exception ex)
+            {
+                return registroExitoso;
+            } 
         }
 
-        public Cliente[] GetTodos()
+        public List<Cliente> GetTodos()
         {
-            return _clientes;
+            return crudClientes.ObtenerTodosCliente();
         }
     }
 }

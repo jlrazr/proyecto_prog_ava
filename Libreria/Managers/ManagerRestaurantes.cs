@@ -3,7 +3,7 @@ using Libreria.Clases;
 
 namespace Libreria.Managers
 {
-    public class ManagerRestaurantes : IManager<Restaurante>
+    public class ManagerRestaurantes
     {
         private Restaurante[] _restaurantes = new Restaurante[20];
         private int _cuentaRestaurantes = 0;

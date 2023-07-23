@@ -1,32 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using Libreria.Clases;
-using Libreria.ClasesDB;
+using Libreria.AccesoBD;
 using Libreria.Managers;
 
 namespace AppServidor.Forms
 {
     public partial class FormMostrarClientes : Form
     {
-        //private ManagerClientes managerClientes;
-        private ClienteCRUD ClienteCRUD;
-        public FormMostrarClientes(ClienteCRUD _ClienteCRUD)
+        private ManagerClientes managerClientes;
+        //private CrudClientes ClienteCRUD;
+        public FormMostrarClientes(ManagerClientes managerClientes)
         {
-            this.ClienteCRUD = _ClienteCRUD;
+            this.managerClientes = managerClientes;
             InitializeComponent();
             this.Shown += new System.EventHandler(this.FormMostrarClientes_Shown);
         }
 
         private void FormMostrarClientes_Shown(object sender, EventArgs e)
         {
-            List<Cliente> clientes = ClienteCRUD.ObtenerTodosCliente();
+            List<Cliente> clientes = managerClientes.GetTodos();
             dataGridView_consul_clientes.DataSource = clientes.Where(x => x != null).ToList();
         }
     }

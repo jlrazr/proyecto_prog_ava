@@ -3,7 +3,7 @@ using Libreria.Clases;
 
 namespace Libreria.Managers
 {
-    public class ManagerPlatos : IManager<Plato>
+    public class ManagerPlatos
     {
         private Plato[] _platos = new Plato[20];
         private int _cuentaPlatos = 0;

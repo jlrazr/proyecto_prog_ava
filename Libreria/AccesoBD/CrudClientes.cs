@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Security.Cryptography.X509Certificates;
 using Libreria.Clases;
-using System.Reflection;
-using System.Xml.Linq;
 
-namespace Libreria.ClasesDB
+namespace Libreria.AccesoBD
 {
-    public class ClienteCRUD
+    public class CrudClientes
     {
         private string cadenaConexion = string.Empty;
 
-        public ClienteCRUD()
+        public CrudClientes()
         {
             cadenaConexion = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
         }
@@ -91,9 +83,10 @@ namespace Libreria.ClasesDB
                         string SegundoApellido = reader["SegundoApellido"].ToString();
                         DateTime FechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
                         char Genero = Convert.ToChar(reader["Genero"]);
+                        int IdCliente = Convert.ToInt32(reader["IdCliente"]);
 
                         Cliente cliente = new Cliente(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Genero);
-                        int IdCliente = Convert.ToInt32(reader["IdCliente"]);
+                        cliente.Id = IdCliente;
 
                         clientes.Add(cliente);
                     }

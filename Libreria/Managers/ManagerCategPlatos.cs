@@ -3,7 +3,7 @@ using Libreria.Clases;
 
 namespace Libreria.Managers
 {
-    public class ManagerCategPlatos : IManager<CategoriaPlato>
+    public class ManagerCategPlatos
     {
         private CategoriaPlato[] _categPlatos = new CategoriaPlato[20];
         private int _cuentaCategPlatos = 0;

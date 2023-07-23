@@ -1,5 +1,5 @@
 using AppServidor.Forms;
-using Libreria.ClasesDB;
+using Libreria.AccesoBD;
 using Libreria.Managers;
 
 namespace AppServidor
@@ -13,7 +13,6 @@ namespace AppServidor
         private ManagerRestaurantePlatos managerRestPlatos = new();
         private ManagerExtra managerExtra = new();
 
-        private ClienteCRUD clienteCrud = new();
         public FormPrincipal()
         {
             InitializeComponent();
@@ -63,7 +62,7 @@ namespace AppServidor
 
         private void button_consul_clientes_Click(object sender, EventArgs e)
         {
-            var form = new FormMostrarClientes(clienteCrud);
+            var form = new FormMostrarClientes(managerClientes);
             form.ShowDialog();
         }
 
