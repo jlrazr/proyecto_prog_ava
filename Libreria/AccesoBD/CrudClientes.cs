@@ -105,5 +105,54 @@ namespace Libreria.AccesoBD
                 }
             }
         }
+
+        public Cliente ObtenerClientePorId(int idCliente)
+        {
+            SqlConnection conexion;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            string sentenciaSQL = "SELECT IdCliente, Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Genero FROM dbo.Cliente WHERE IdCliente = @IdCliente";
+
+            using (conexion = new(cadenaConexion))
+            {
+                try
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sentenciaSQL;
+                    cmd.Connection = conexion;
+                    cmd.Connection.Open();
+                    cmd.Parameters.AddWithValue("@IdCliente", idCliente);
+
+                    reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string Nombre = reader["Nombre"].ToString();
+                        string PrimerApellido = reader["PrimerApellido"].ToString();
+                        string SegundoApellido = reader["SegundoApellido"].ToString();
+                        DateTime FechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
+                        char Genero = Convert.ToChar(reader["Genero"]);
+                        int IdCliente = Convert.ToInt32(reader["IdCliente"]);
+
+                        Cliente cliente = new Cliente(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Genero);
+                        cliente.Id = IdCliente;
+
+                        return cliente;
+                    }
+
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                    return null;
+                }
+                finally
+                {
+                    cmd.Connection.Close();
+                }
+            }
+        }
     }
 }

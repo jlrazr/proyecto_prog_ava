@@ -1,37 +1,41 @@
-﻿using System.Xml.Linq;
+﻿using Libreria.AccesoBD;
 using Libreria.Clases;
 
 namespace Libreria.Managers
 {
     public class ManagerPlatos
     {
-        private Plato[] _platos = new Plato[20];
-        private int _cuentaPlatos = 0;
+        CrudPlatos crudPlatos;
 
-        public void Registrar(Plato plato)
+        public ManagerPlatos()
         {
-            if (_cuentaPlatos < 20)
+            this.crudPlatos = new();
+        }
+
+        public bool Registrar(Plato plato)
+        {
+            bool registroExitoso = false;
+
+            try
             {
-                _platos[_cuentaPlatos++] = plato;
-                Console.WriteLine("El plato fue registrado con éxito.");
+                registroExitoso = crudPlatos.CrearPlato(plato);
+
+                return registroExitoso;
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return registroExitoso;
             }
         }
 
-        public Plato[] GetTodos()
+        public List<Plato> GetTodos()
         {
-            return _platos;
+            return crudPlatos.ObtenerTodosPlato();
         }
 
         public Plato GetPorId(int id)
         {
-            foreach (var plato in _platos)
-            {
-                if (plato != null && plato.Id == id)
-                {
-                    return plato;
-                }
-            }
-
             return null;
         }
     }

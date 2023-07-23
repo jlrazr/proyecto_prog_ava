@@ -5,23 +5,18 @@ namespace Libreria.Clases
 {
     public class Plato
     {
-        private static int SiguienteId = 1; // Compartida para todas las instancias
-        public int Id { get; private set; }
-
+        public int Id { get; set; }
         public string Nombre { get; set; }
+        public int IdCategoria { get; set; }
         public int Precio { get; set; }
-        public CategoriaPlato Categoria { get; set; }
+        
 
         // Constructor
-        public Plato(string nombre, int precio, CategoriaPlato categoria)
+        public Plato(string nombre, int idCategoria, int precio)
         {
-            Id = SiguienteId;
             Nombre = nombre;
+            IdCategoria = idCategoria;
             Precio = precio;
-            Categoria = categoria;
-
-            SiguienteId++;
         }
     }
-
 }

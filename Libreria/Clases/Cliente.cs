@@ -9,7 +9,6 @@
         public DateTime FechaNacimiento { get; set; }
         public char Genero { get; set; }
 
-
         // Constructor
         public Cliente(string nombre, string primApellido, string segApellido, DateTime fechaNacimiento, char genero)
         {

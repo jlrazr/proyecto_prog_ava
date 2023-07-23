@@ -99,5 +99,51 @@ namespace Libreria.AccesoBD
                 }
             }
         }
+        
+        public CategoriaPlato ObtenerCategPlatoPorId(int idCategoria)
+        {
+            SqlConnection conexion;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            string sentenciaSQL = "SELECT IdCategoria, Descripcion, Estado FROM dbo.CategoriaPlato WHERE IdCategoria = @IdCategoria";
+
+            using (conexion = new(cadenaConexion))
+            {
+                try
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sentenciaSQL;
+                    cmd.Connection = conexion;
+                    cmd.Connection.Open();
+                    cmd.Parameters.AddWithValue("@IdCategoria", idCategoria);
+
+                    reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string Descripcion = reader["Descripcion"].ToString();
+                        bool Estado = Convert.ToBoolean(reader["Estado"]);
+                        int IdCategoria = Convert.ToInt32(reader["IdCategoria"]);
+
+                        CategoriaPlato categoria = new CategoriaPlato(Descripcion, Estado);
+                        categoria.Id = IdCategoria;
+                        
+                        return categoria;
+                    }
+
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                    return null;
+                }
+                finally
+                {
+                    cmd.Connection.Close();
+                }
+            }
+        }
     }
 }

@@ -36,26 +36,22 @@ namespace AppServidor.Forms
                 mensaje.ShowDialog();
             }
             else
-            { 
-
+            {
                 try
                 {
                     string nombre = textBox_reg_plato_nombre.Text;
                     int precio = int.Parse(textBox_reg_plato_precio.Text);
                     int idCateg = int.Parse(textBox_reg_plato_idCateg.Text);
-                    CategoriaPlato categ;
+                    CategoriaPlato categ = managerCategPlatos.GetPorId(idCateg);
 
-                    var validaCateg = managerCategPlatos.GetPorId(int.Parse(textBox_reg_plato_idCateg.Text));
-
-                    if (validaCateg == null)
+                    if (categ == null)
                     {
                         var mensaje = new FormMensaje("Error: El ID ingresado no corresponde a ninguna categoría");
                         mensaje.ShowDialog();
                     }
                     else
                     {
-                        categ = managerCategPlatos.GetPorId(idCateg);
-                        Plato nuevoPlato = new(nombre, precio, categ);
+                        Plato nuevoPlato = new(nombre, categ.Id, precio);
 
                         // Registra el plato
                         managerPlatos.Registrar(nuevoPlato);

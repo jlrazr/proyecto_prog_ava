@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
+using Libreria.Clases;
 using Libreria.Managers;
 
 namespace AppServidor.Forms
@@ -23,7 +16,8 @@ namespace AppServidor.Forms
 
         private void FormMostrarPlatos_Shown(object sender, EventArgs e)
         {
-            dataGridView_consul_platos.DataSource = managerPlatos.GetTodos().Where(x => x != null).ToList();
+            List<Plato> platos = managerPlatos.GetTodos();
+            dataGridView_consul_platos.DataSource = platos.Where(x => x != null).ToList();
         }
     }
 }

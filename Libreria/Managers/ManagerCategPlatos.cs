@@ -30,20 +30,29 @@ namespace Libreria.Managers
 
         public List<CategoriaPlato> GetTodos()
         {
-            return crudCategPlatos.ObtenerTodasCategPlato();
+            try
+            {
+                return crudCategPlatos.ObtenerTodasCategPlato();
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
+            }
+            
         }
 
         public CategoriaPlato GetPorId(int id)
         {
-            //foreach (var categ in _categPlatos)
-            //{
-            //    if (categ != null && categ.Id == id)
-            //    {
-            //        return categ;
-            //    }
-            //}
-
-            return null;
+            try
+            {
+                return crudCategPlatos.ObtenerCategPlatoPorId(id);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }
