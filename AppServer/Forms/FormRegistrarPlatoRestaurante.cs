@@ -32,7 +32,7 @@ namespace AppServidor.Forms
 
         private void FormRegistrarPlatoRestaurante_Shown(object sender, EventArgs e)
         {
-            comboBox_reg_platoRest_lista.DataSource = managerRestaurantes.GetTodos().Where(x => x != null && x.Activo == true).ToList();
+            comboBox_reg_platoRest_lista.DataSource = managerRestaurantes.GetTodos().Where(x => x != null && x.Estado == true).ToList();
             dataGridView_reg_platoRrest.DataSource = managerPlatos.GetTodos().Where(x => x != null).ToList();
             comboBox_reg_platoRest_lista.DropDownStyle = ComboBoxStyle.DropDownList;
         }

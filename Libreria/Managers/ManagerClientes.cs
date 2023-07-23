@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using Libreria.AccesoBD;
+﻿using Libreria.AccesoBD;
 using Libreria.Clases;
 
 namespace Libreria.Managers
@@ -7,7 +6,8 @@ namespace Libreria.Managers
     public class ManagerClientes
     {
         CrudClientes crudClientes;
-        public ManagerClientes() {
+        public ManagerClientes()
+        {
             this.crudClientes = new();
         }
         public bool Registrar(Cliente cliente)
@@ -21,6 +21,7 @@ namespace Libreria.Managers
                 return registroExitoso;
             } catch (Exception ex)
             {
+                System.Console.WriteLine(ex.Message);
                 return registroExitoso;
             } 
         }
@@ -28,6 +29,11 @@ namespace Libreria.Managers
         public List<Cliente> GetTodos()
         {
             return crudClientes.ObtenerTodosCliente();
+        }
+
+        public Cliente GetClientePorId(int  id)
+        {
+            return null;
         }
     }
 }

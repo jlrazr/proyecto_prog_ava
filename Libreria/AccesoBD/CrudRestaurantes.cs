@@ -5,21 +5,21 @@ using Libreria.Clases;
 
 namespace Libreria.AccesoBD
 {
-    public class CrudClientes
+    public class CrudRestaurantes
     {
         private string cadenaConexion = string.Empty;
 
-        public CrudClientes()
+        public CrudRestaurantes()
         {
             cadenaConexion = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
         }
 
-        public bool CrearCliente(Cliente cliente)
+        public bool CrearRestaurante(Restaurante restaurante)
         {
             bool registroExitoso = false;
             SqlConnection conexion;
-            string sentenciaSQL = "INSERT INTO dbo.Cliente (Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Genero)" +
-                                                   "VALUES (@Nombre, @PrimerApellido, @SegundoApellido, @FechaNacimiento, @Genero)";
+            string sentenciaSQL = "INSERT INTO dbo.Restaurante (Nombre, Direccion, Estado, Telefono)" +
+                                                   "VALUES (@Nombre, @Direccion, @Estado, @Telefono)";
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
@@ -34,11 +34,10 @@ namespace Libreria.AccesoBD
                     cmd.Connection.Open();
 
                     //Parámetros
-                    cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
-                    cmd.Parameters.AddWithValue("@PrimerApellido", cliente.PrimApellido);
-                    cmd.Parameters.AddWithValue("@SegundoApellido", cliente.SegApellido);
-                    cmd.Parameters.AddWithValue("@FechaNacimiento", cliente.FechaNacimiento);
-                    cmd.Parameters.AddWithValue("@Genero", cliente.Genero);
+                    cmd.Parameters.AddWithValue("@Nombre", restaurante.Nombre);
+                    cmd.Parameters.AddWithValue("@Direccion", restaurante.Direccion);
+                    cmd.Parameters.AddWithValue("@Estado", restaurante.Estado);
+                    cmd.Parameters.AddWithValue("@Telefono", restaurante.Telefono);
 
                     registroExitoso = cmd.ExecuteNonQuery() > 0;
 
@@ -56,15 +55,15 @@ namespace Libreria.AccesoBD
             }
         }
 
-        public List<Cliente> ObtenerTodosCliente()
+        public List<Restaurante> ObtenerTodosRestaurantes()
         {
-            List<Cliente> clientes = new List<Cliente>();
+            List<Restaurante> restaurantes = new List<Restaurante>();
 
             SqlConnection conexion;
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            string sentenciaSQL = "SELECT IdCliente, Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Genero FROM dbo.Cliente";
+            string sentenciaSQL = "SELECT IdRestaurante, Nombre, Direccion, Estado, Telefono FROM dbo.Restaurante";
 
             using (conexion = new(cadenaConexion))
             {
@@ -80,24 +79,23 @@ namespace Libreria.AccesoBD
                     while (reader.Read())
                     {
                         string Nombre = reader["Nombre"].ToString();
-                        string PrimerApellido = reader["PrimerApellido"].ToString();
-                        string SegundoApellido = reader["SegundoApellido"].ToString();
-                        DateTime FechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
-                        char Genero = Convert.ToChar(reader["Genero"]);
-                        int IdCliente = Convert.ToInt32(reader["IdCliente"]);
+                        string Direccion = reader["Direccion"].ToString();
+                        bool Estado = Convert.ToBoolean(reader["Estado"]);
+                        string Telefono = reader["Telefono"].ToString();
+                        int IdRestaurante = Convert.ToInt32(reader["IdRestaurante"]);
 
-                        Cliente cliente = new Cliente(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Genero);
-                        cliente.Id = IdCliente;
+                        Restaurante restaurante = new Restaurante(Nombre, Direccion, Estado, Telefono);
+                        restaurante.Id = IdRestaurante;
 
-                        clientes.Add(cliente);
+                        restaurantes.Add(restaurante);
                     }
 
-                    return clientes;
+                    return restaurantes;
                 }
                 catch (Exception ex)
                 {
                     System.Console.WriteLine(ex.Message);
-                    return clientes;
+                    return restaurantes;
                 }
                 finally
                 {

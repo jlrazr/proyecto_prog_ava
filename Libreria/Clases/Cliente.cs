@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System;
-
-namespace Libreria.Clases
+﻿namespace Libreria.Clases
 {
     public class Cliente
     {

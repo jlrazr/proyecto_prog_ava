@@ -1,28 +1,21 @@
-﻿using System.Net;
-using System.Xml.Linq;
-
-namespace Libreria.Clases
+﻿namespace Libreria.Clases
 {
     public class Restaurante
     {
-        private static int SiguienteId = 1; // Compartida para todas las instancias
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
-        public bool Activo { get; set; }
+        public bool Estado { get; set; }
         public string Telefono { get; set; }
 
 
         // Constructor
-        public Restaurante(string nombre, string direccion, bool activo, string telefono)
+        public Restaurante(string nombre, string direccion, bool estado, string telefono)
         {
-            Id = SiguienteId;
             Nombre = nombre;
             Direccion = direccion;
-            Activo = activo;
+            Estado = estado;
             Telefono = telefono;
-
-            SiguienteId++;
         }
 
         public override string ToString()

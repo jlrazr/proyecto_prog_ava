@@ -1,40 +1,47 @@
-﻿using System.Xml.Linq;
+﻿using Libreria.AccesoBD;
 using Libreria.Clases;
 
 namespace Libreria.Managers
 {
     public class ManagerRestaurantes
     {
-        private Restaurante[] _restaurantes = new Restaurante[20];
-        private int _cuentaRestaurantes = 0;
-
-        public void Registrar(Restaurante restaurante)
+        CrudRestaurantes crudRestaurantes;
+        public ManagerRestaurantes()
         {
-            if (_cuentaRestaurantes < 20)
+            this.crudRestaurantes = new();
+        }
+
+        public bool Registrar(Restaurante restaurante)
+        {
+            bool registroExitoso = false;
+
+            try
             {
-                _restaurantes[_cuentaRestaurantes++] = restaurante;
-                Console.WriteLine("El restaurante fue registrado con éxito.");
+                registroExitoso = crudRestaurantes.CrearRestaurante(restaurante);
+
+                return registroExitoso;
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("El número máximo de restaurantes (20) ya se ha alcanzado.");
+                System.Console.WriteLine(ex.Message);
+                return registroExitoso;
             }
         }
 
-        public Restaurante[] GetTodos()
+        public List<Restaurante> GetTodos()
         {
-            return _restaurantes;
+            return crudRestaurantes.ObtenerTodosRestaurantes();
         }
 
         public Restaurante GetPorId(int id)
         {
-            foreach (var restaurante in _restaurantes)
-            {
-                if (restaurante != null && restaurante.Id == id)
-                {
-                    return restaurante;
-                }
-            }
+            //foreach (var restaurante in restaurantes)
+            //{
+            //    if (restaurante != null && restaurante.Id == id)
+            //    {
+            //        return null;
+            //    }
+            //}
 
             return null;
         }
