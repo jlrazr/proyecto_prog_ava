@@ -35,10 +35,9 @@
             label3 = new Label();
             button_reg_platoRest = new Button();
             dataGridView_consul_platosRest = new DataGridView();
-            button_consul_platosRest = new Button();
             label4 = new Label();
-            label_fecha_afil = new Label();
             label6 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView_reg_platoRrest).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_consul_platosRest).BeginInit();
             SuspendLayout();
@@ -76,7 +75,7 @@
             dataGridView_reg_platoRrest.Name = "dataGridView_reg_platoRrest";
             dataGridView_reg_platoRrest.RowHeadersWidth = 62;
             dataGridView_reg_platoRrest.RowTemplate.Height = 33;
-            dataGridView_reg_platoRrest.Size = new Size(704, 255);
+            dataGridView_reg_platoRrest.Size = new Size(704, 377);
             dataGridView_reg_platoRrest.TabIndex = 3;
             // 
             // label3
@@ -90,7 +89,7 @@
             // 
             // button_reg_platoRest
             // 
-            button_reg_platoRest.Location = new Point(408, 448);
+            button_reg_platoRest.Location = new Point(408, 570);
             button_reg_platoRest.Name = "button_reg_platoRest";
             button_reg_platoRest.Size = new Size(308, 56);
             button_reg_platoRest.TabIndex = 5;
@@ -101,59 +100,49 @@
             // dataGridView_consul_platosRest
             // 
             dataGridView_consul_platosRest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_consul_platosRest.Location = new Point(12, 748);
+            dataGridView_consul_platosRest.Location = new Point(12, 693);
             dataGridView_consul_platosRest.Name = "dataGridView_consul_platosRest";
             dataGridView_consul_platosRest.RowHeadersWidth = 62;
             dataGridView_consul_platosRest.RowTemplate.Height = 33;
-            dataGridView_consul_platosRest.Size = new Size(704, 264);
+            dataGridView_consul_platosRest.Size = new Size(704, 319);
             dataGridView_consul_platosRest.TabIndex = 6;
-            // 
-            // button_consul_platosRest
-            // 
-            button_consul_platosRest.Location = new Point(408, 689);
-            button_consul_platosRest.Name = "button_consul_platosRest";
-            button_consul_platosRest.Size = new Size(308, 53);
-            button_consul_platosRest.TabIndex = 7;
-            button_consul_platosRest.Text = "Consultar platos registrados";
-            button_consul_platosRest.UseVisualStyleBackColor = true;
-            button_consul_platosRest.Click += button_consul_platosRest_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 623);
+            label4.Location = new Point(12, 665);
             label4.Name = "label4";
             label4.Size = new Size(382, 25);
             label4.TabIndex = 8;
             label4.Text = "Platos Registrados al Restaurante Seleccionado";
             // 
-            // label_fecha_afil
-            // 
-            label_fecha_afil.AutoSize = true;
-            label_fecha_afil.Location = new Point(12, 720);
-            label_fecha_afil.Name = "label_fecha_afil";
-            label_fecha_afil.Size = new Size(277, 25);
-            label_fecha_afil.TabIndex = 9;
-            label_fecha_afil.Text = "Fecha de afiliación: No disponible";
-            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 565);
+            label6.Location = new Point(11, 629);
             label6.Name = "label6";
             label6.Size = new Size(705, 25);
             label6.TabIndex = 10;
             label6.Text = "---------------------------------------------------------------------------------------------------";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(12, 581);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 11;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // FormRegistrarPlatoRestaurante
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(728, 1024);
+            Controls.Add(button1);
             Controls.Add(label6);
-            Controls.Add(label_fecha_afil);
             Controls.Add(label4);
-            Controls.Add(button_consul_platosRest);
             Controls.Add(dataGridView_consul_platosRest);
             Controls.Add(button_reg_platoRest);
             Controls.Add(label3);
@@ -178,9 +167,8 @@
         private Label label3;
         private Button button_reg_platoRest;
         private DataGridView dataGridView_consul_platosRest;
-        private Button button_consul_platosRest;
         private Label label4;
-        private Label label_fecha_afil;
         private Label label6;
+        private Button button1;
     }
 }

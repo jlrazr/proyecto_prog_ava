@@ -87,7 +87,7 @@ namespace Libreria.AccesoBD
                         restPlato.Id = idAsignacion;
                         restPlato.FechaAsignacion = fechaAsignacion;
 
-                        return resultados;
+                        resultados.Add(restPlato);
                     }
 
                     return resultados;

@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Libreria.AccesoBD;
 using Libreria.Clases;
 using Libreria.Managers;
 
@@ -45,6 +46,16 @@ namespace AppServidor.Forms
                         }
                     }
 
+                    List<int> listaIdsPlatos = managerRestaurantePlatos.GetIdPlatosPorIdRestaurante(idRestSeleccionado);
+                    List<Plato> platosAsignados = new();
+
+                    for (int i = 0; i < listaIdsPlatos.Count; i++)
+                    {
+                        platosAsignados.Add(managerPlatos.GetPorId(listaIdsPlatos[i]));
+                    }
+
+                    dataGridView_consul_platosRest.DataSource = platosAsignados.Where(x => x != null).ToList();
+
                     var mensaje_platosNoRegistrados = new FormMensaje("El/los platos han sido registrados en el restaurante " + restauranteSeleccionado.Nombre);
                     mensaje_platosNoRegistrados.ShowDialog();
                 }
@@ -54,23 +65,6 @@ namespace AppServidor.Forms
                 var mensaje_errorReg = new FormMensaje("Ha ocurrido un error. Verifique los datos y vuelva a intentarlo");
                 mensaje_errorReg.ShowDialog();
             }
-        }
-
-        private void button_consul_platosRest_Click(object sender, EventArgs e)
-        {
-            //if (comboBox_reg_platoRest_lista.SelectedItem != null && comboBox_reg_platoRest_lista.SelectedItem is Restaurante restauranteSeleccionado)
-            //{
-            //    int idRestSeleccionado = restauranteSeleccionado.Id;
-            //    RestaurantePlato? restPlato = managerRestaurantePlatos.GetPorIdRestaurante(idRestSeleccionado);
-            //
-             //   dataGridView_consul_platosRest.DataSource = restPlato?.Platos.Where(x => x != null).ToList();
-            //    label_fecha_afil.Text = "Fecha de afiliación: " + restPlato?.FechaAfiliacion.ToString();
-            //}
-            //else
-            //{
-            //    var mensaje_errorConsul = new FormMensaje("Ha ocurrido un error. Verifique que el restaurante tenga platos registrados y vuelva a intentarlo");
-            //    mensaje_errorConsul.ShowDialog();
-            //}
         }
     }
 }

@@ -103,5 +103,52 @@ namespace Libreria.AccesoBD
                 }
             }
         }
+
+        public Plato ObtenerPlatoPorId(int idPlato)
+        {
+            SqlConnection conexion;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            string sentenciaSQL = "SELECT IdPlato, Nombre, IdCategoria, Precio FROM dbo.Plato WHERE IdPlato = @idPlato";
+
+            using (conexion = new(cadenaConexion))
+            {
+                try
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sentenciaSQL;
+                    cmd.Connection = conexion;
+                    cmd.Connection.Open();
+                    cmd.Parameters.AddWithValue("@idPlato", idPlato);
+
+                    reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string Nombre = reader["Nombre"].ToString();
+                        int IdCategoria = Convert.ToInt32(reader["IdCategoria"]);
+                        int Precio = Convert.ToInt32(reader["Precio"].ToString());
+                        int IdPlato = Convert.ToInt32(reader["IdPlato"]);
+
+                        Plato plato = new Plato(Nombre, IdCategoria, Precio);
+                        plato.Id = IdPlato;
+
+                        return plato;
+                    }
+
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                    return null;
+                }
+                finally
+                {
+                    cmd.Connection.Close();
+                }
+            }
+        }
     }
 }

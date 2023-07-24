@@ -36,7 +36,15 @@ namespace Libreria.Managers
 
         public Plato GetPorId(int id)
         {
-            return null;
+            try
+            {
+                return crudPlatos.ObtenerPlatoPorId(id);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }

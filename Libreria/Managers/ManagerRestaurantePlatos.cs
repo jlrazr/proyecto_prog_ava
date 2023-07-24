@@ -33,5 +33,18 @@ namespace Libreria.Managers
         {
             return crudRestaurantePlatos.ObtenerRestPlatoPorIdRestaurante(id);
         }
+
+        public List<int> GetIdPlatosPorIdRestaurante(int id)
+        {
+            List<RestaurantePlato> listaAsignaciones = GetPorIdRestaurante(id);
+            List<int> idsPlatos = new List<int>();
+
+            foreach (var item in listaAsignaciones)
+            {
+                idsPlatos.Add(item.IdPlato);
+            }
+
+            return idsPlatos;
+        }
     }
 }
