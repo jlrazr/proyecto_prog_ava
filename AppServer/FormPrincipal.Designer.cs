@@ -171,6 +171,7 @@
             button_consul_plato_rest.TabIndex = 13;
             button_consul_plato_rest.Text = "Consultar Platos por Restaurante";
             button_consul_plato_rest.UseVisualStyleBackColor = true;
+            button_consul_plato_rest.Click += button_consul_plato_rest_Click;
             // 
             // FormPrincipal
             // 

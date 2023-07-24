@@ -47,3 +47,4 @@ D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\AppServer\obj\Debug\net6.0-w
 D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\AppServer\obj\Debug\net6.0-windows\AppServidor.Forms.FormRegistrarPlato.resources
 D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\AppServer\obj\Debug\net6.0-windows\AppServidor.Forms.FormRegistrarPlatoRestaurante.resources
 D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\AppServer\obj\Debug\net6.0-windows\AppServidor.FormRegistrarRestaurante.resources
+D:\UNED\IIQ2023\Programacion Avanzada\Tarea2\Tarea2\AppServer\obj\Debug\net6.0-windows\AppServidor.Forms.FormMostrarPlatoRestaurante.resources

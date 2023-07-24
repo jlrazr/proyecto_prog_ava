@@ -37,7 +37,6 @@
             dataGridView_consul_platosRest = new DataGridView();
             label4 = new Label();
             label6 = new Label();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView_reg_platoRrest).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_consul_platosRest).BeginInit();
             SuspendLayout();
@@ -125,22 +124,11 @@
             label6.TabIndex = 10;
             label6.Text = "---------------------------------------------------------------------------------------------------";
             // 
-            // button1
-            // 
-            button1.Location = new Point(12, 581);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 11;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // FormRegistrarPlatoRestaurante
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(728, 1024);
-            Controls.Add(button1);
             Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(dataGridView_consul_platosRest);
@@ -169,6 +157,5 @@
         private DataGridView dataGridView_consul_platosRest;
         private Label label4;
         private Label label6;
-        private Button button1;
     }
 }

@@ -82,5 +82,11 @@ namespace AppServidor
             var form = new FormMostrarExtras(managerExtra);
             form.ShowDialog();
         }
+
+        private void button_consul_plato_rest_Click(object sender, EventArgs e)
+        {
+            var form = new FormMostrarPlatoRestaurante(managerPlatos, managerRestPlatos, managerRest);
+            form.ShowDialog();
+        }
     }
 }
