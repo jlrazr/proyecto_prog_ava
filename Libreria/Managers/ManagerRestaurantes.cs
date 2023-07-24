@@ -35,15 +35,15 @@ namespace Libreria.Managers
 
         public Restaurante GetPorId(int id)
         {
-            //foreach (var restaurante in restaurantes)
-            //{
-            //    if (restaurante != null && restaurante.Id == id)
-            //    {
-            //        return null;
-            //    }
-            //}
-
-            return null;
+            try
+            {
+                return crudRestaurantes.ObtenerRestaurantePorId(id);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }

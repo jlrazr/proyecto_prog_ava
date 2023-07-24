@@ -40,6 +40,7 @@
             button_consul_extras = new Button();
             button_consul_clientes = new Button();
             button_consul_platos = new Button();
+            button_consul_plato_rest = new Button();
             SuspendLayout();
             // 
             // label_titulo
@@ -94,7 +95,7 @@
             // 
             // button_consul_categ
             // 
-            button_consul_categ.Location = new Point(20, 616);
+            button_consul_categ.Location = new Point(20, 556);
             button_consul_categ.Name = "button_consul_categ";
             button_consul_categ.Size = new Size(475, 50);
             button_consul_categ.TabIndex = 8;
@@ -104,7 +105,7 @@
             // 
             // button_consul_rest
             // 
-            button_consul_rest.Location = new Point(20, 548);
+            button_consul_rest.Location = new Point(20, 488);
             button_consul_rest.Name = "button_consul_rest";
             button_consul_rest.Size = new Size(475, 50);
             button_consul_rest.TabIndex = 7;
@@ -128,7 +129,7 @@
             button_reg_platoRest.Name = "button_reg_platoRest";
             button_reg_platoRest.Size = new Size(475, 50);
             button_reg_platoRest.TabIndex = 5;
-            button_reg_platoRest.Text = "Registrar y Consultar Platos por Restaurante";
+            button_reg_platoRest.Text = "Registrar Platos por Restaurante";
             button_reg_platoRest.UseVisualStyleBackColor = true;
             button_reg_platoRest.Click += button_reg_platoRest_Click;
             // 
@@ -144,7 +145,7 @@
             // 
             // button_consul_clientes
             // 
-            button_consul_clientes.Location = new Point(20, 757);
+            button_consul_clientes.Location = new Point(20, 697);
             button_consul_clientes.Name = "button_consul_clientes";
             button_consul_clientes.Size = new Size(475, 50);
             button_consul_clientes.TabIndex = 10;
@@ -154,7 +155,7 @@
             // 
             // button_consul_platos
             // 
-            button_consul_platos.Location = new Point(20, 689);
+            button_consul_platos.Location = new Point(20, 629);
             button_consul_platos.Name = "button_consul_platos";
             button_consul_platos.Size = new Size(475, 50);
             button_consul_platos.TabIndex = 9;
@@ -162,11 +163,21 @@
             button_consul_platos.UseVisualStyleBackColor = true;
             button_consul_platos.Click += button_consul_platos_Click;
             // 
+            // button_consul_plato_rest
+            // 
+            button_consul_plato_rest.Location = new Point(20, 766);
+            button_consul_plato_rest.Name = "button_consul_plato_rest";
+            button_consul_plato_rest.Size = new Size(475, 50);
+            button_consul_plato_rest.TabIndex = 13;
+            button_consul_plato_rest.Text = "Consultar Platos por Restaurante";
+            button_consul_plato_rest.UseVisualStyleBackColor = true;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(507, 911);
+            Controls.Add(button_consul_plato_rest);
             Controls.Add(button_consul_extras);
             Controls.Add(button_consul_clientes);
             Controls.Add(button_consul_platos);
@@ -199,5 +210,6 @@
         private Button button_consul_extras;
         private Button button_consul_clientes;
         private Button button_consul_platos;
+        private Button button_consul_plato_rest;
     }
 }

@@ -50,7 +50,7 @@ namespace Libreria.AccesoBD
                 }
                 finally
                 {
-                    cmd.Connection?.Close();
+                    cmd.Connection.Close();
                 }
             }
         }
@@ -96,6 +96,54 @@ namespace Libreria.AccesoBD
                 {
                     System.Console.WriteLine(ex.Message);
                     return restaurantes;
+                }
+                finally
+                {
+                    cmd.Connection.Close();
+                }
+            }
+        }
+
+        public Restaurante ObtenerRestaurantePorId(int idRestaurante)
+        {
+            SqlConnection conexion;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            string sentenciaSQL = "SELECT IdRestaurante, Nombre, Direccion, Estado, Telefono FROM dbo.Restaurante WHERE IdRestaurante = @IdRestaurante";
+
+            using (conexion = new(cadenaConexion))
+            {
+                try
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sentenciaSQL;
+                    cmd.Connection = conexion;
+                    cmd.Connection.Open();
+                    cmd.Parameters.AddWithValue("@IdRestaurante", idRestaurante);
+
+                    reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        int IdRestaurante = Convert.ToInt32(reader["IdRestaurante"]);
+                        string Nombre = reader["Nombre"].ToString();
+                        string Direccion = reader["Direccion"].ToString();
+                        bool Estado = Convert.ToBoolean(reader["Estado"]);
+                        string Telefono = reader["Telefono"].ToString();
+
+                        Restaurante restaurante = new Restaurante(Nombre, Direccion, Estado, Telefono);
+                        restaurante.Id = IdRestaurante;
+
+                        return restaurante;
+                    }
+
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                    return null;
                 }
                 finally
                 {

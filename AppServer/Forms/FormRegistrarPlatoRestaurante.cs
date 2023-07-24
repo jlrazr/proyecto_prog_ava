@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.DirectoryServices.ActiveDirectory;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using Libreria.Clases;
 using Libreria.Managers;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AppServidor.Forms
 {
@@ -39,56 +28,25 @@ namespace AppServidor.Forms
 
         private void button_reg_platoRest_Click(object sender, EventArgs e)
         {
-            Plato[] platosSeleccionados = new Plato[10];
-            int contadorPlatos = 0;
-
             if (comboBox_reg_platoRest_lista.SelectedItem != null && comboBox_reg_platoRest_lista.SelectedItem is Restaurante restauranteSeleccionado)
             {
                 int idRestSeleccionado = restauranteSeleccionado.Id;
-                Restaurante restSeleccionado = managerRestaurantes.GetPorId(idRestSeleccionado);
 
-                if (managerRestaurantePlatos.ExisteRestaurante(idRestSeleccionado))
+                if (managerRestaurantes.GetPorId(idRestSeleccionado) != null)
                 {
-                    contadorPlatos = 0;
-                    managerRestaurantePlatos.LimpiarPlatos(idRestSeleccionado);
-
                     foreach (DataGridViewRow row in dataGridView_reg_platoRrest.SelectedRows)
                     {
                         if (row.DataBoundItem is Plato platoSeleccionado)
                         {
                             int idPlatoSeleccionado = platoSeleccionado.Id;
-                            Plato platoSelec = managerPlatos.GetPorId(idPlatoSeleccionado);
-                            platosSeleccionados[contadorPlatos] = platoSelec;
-                            contadorPlatos++;
 
-                            managerRestaurantePlatos.AnadirPlatos(idRestSeleccionado, platoSelec);
+                            RestaurantePlato restPlato = new(idRestSeleccionado, idPlatoSeleccionado);
+                            managerRestaurantePlatos.Registrar(restPlato);
                         }
                     }
 
                     var mensaje_platosNoRegistrados = new FormMensaje("El/los platos han sido registrados en el restaurante " + restauranteSeleccionado.Nombre);
                     mensaje_platosNoRegistrados.ShowDialog();
-                }
-                else
-                {
-                    contadorPlatos = 0;
-
-                    foreach (DataGridViewRow row in dataGridView_reg_platoRrest.SelectedRows)
-                    {
-                        if (row.DataBoundItem is Plato platoSeleccionado)
-                        {
-                            int idPlatoSeleccionado = platoSeleccionado.Id;
-                            Plato platoSelec = managerPlatos.GetPorId(idPlatoSeleccionado);
-                            platosSeleccionados[contadorPlatos] = platoSelec;
-                            contadorPlatos++;
-
-                            RestaurantePlato nuevoResPlato = new(restSeleccionado, platosSeleccionados);
-                            managerRestaurantePlatos.Registrar(nuevoResPlato);
-                        }
-                    }
-
-                    var mensaje_platosNoRegistrados = new FormMensaje("El/los platos han sido registrados en el restaurante " + restauranteSeleccionado.Nombre);
-                    mensaje_platosNoRegistrados.ShowDialog();
-
                 }
             }
             else
@@ -100,19 +58,19 @@ namespace AppServidor.Forms
 
         private void button_consul_platosRest_Click(object sender, EventArgs e)
         {
-            if (comboBox_reg_platoRest_lista.SelectedItem != null && comboBox_reg_platoRest_lista.SelectedItem is Restaurante restauranteSeleccionado)
-            {
-                int idRestSeleccionado = restauranteSeleccionado.Id;
-                RestaurantePlato? restPlato = managerRestaurantePlatos.GetPorIdRestaurante(idRestSeleccionado);
-
-                dataGridView_consul_platosRest.DataSource = restPlato?.Platos.Where(x => x != null).ToList();
-                label_fecha_afil.Text = "Fecha de afiliación: " + restPlato?.FechaAfiliacion.ToString();
-            }
-            else
-            {
-                var mensaje_errorConsul = new FormMensaje("Ha ocurrido un error. Verifique que el restaurante tenga platos registrados y vuelva a intentarlo");
-                mensaje_errorConsul.ShowDialog();
-            }
+            //if (comboBox_reg_platoRest_lista.SelectedItem != null && comboBox_reg_platoRest_lista.SelectedItem is Restaurante restauranteSeleccionado)
+            //{
+            //    int idRestSeleccionado = restauranteSeleccionado.Id;
+            //    RestaurantePlato? restPlato = managerRestaurantePlatos.GetPorIdRestaurante(idRestSeleccionado);
+            //
+             //   dataGridView_consul_platosRest.DataSource = restPlato?.Platos.Where(x => x != null).ToList();
+            //    label_fecha_afil.Text = "Fecha de afiliación: " + restPlato?.FechaAfiliacion.ToString();
+            //}
+            //else
+            //{
+            //    var mensaje_errorConsul = new FormMensaje("Ha ocurrido un error. Verifique que el restaurante tenga platos registrados y vuelva a intentarlo");
+            //    mensaje_errorConsul.ShowDialog();
+            //}
         }
     }
 }

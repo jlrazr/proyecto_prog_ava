@@ -1,77 +1,37 @@
-﻿using System.Xml.Linq;
+﻿using Libreria.AccesoBD;
 using Libreria.Clases;
 
 namespace Libreria.Managers
 {
     public class ManagerRestaurantePlatos
     {
-        private RestaurantePlato[] _restaurantePlatos = new RestaurantePlato[20];
-        private int _cuentaRestaurantePlatos = 0;
-        public int _numeroPlatos = 0;
+        CrudRestaurantePlatos crudRestaurantePlatos;
 
-        public void Registrar(RestaurantePlato restaurantePlato)
+        public ManagerRestaurantePlatos()
         {
-            if (_cuentaRestaurantePlatos < 10)
-            {
-                _restaurantePlatos[_cuentaRestaurantePlatos++] = restaurantePlato;
-            }
-            else
-            {
-                Console.WriteLine("El número máximo de platos (10) ya se ha alcanzado.");
-            }
-        }
-        public RestaurantePlato[] GetTodos()
-        {
-            return _restaurantePlatos;
+            this.crudRestaurantePlatos = new();
         }
 
-        public RestaurantePlato? GetPorIdRestaurante(int id)
+        public bool Registrar(RestaurantePlato restPlato)
         {
-            for (int i = 0; i < _cuentaRestaurantePlatos; i++)
-            {
-                if (_restaurantePlatos[i].Restaurante.Id == id)
-                {
-                    return _restaurantePlatos[i];
-                }
-            }
-            return null;
-        }
+            bool registroExitoso = false;
 
-        public bool ExisteRestaurante(int id)
-        {
-            for (int i = 0; i < _cuentaRestaurantePlatos; i++)
+            try
             {
-                if (_restaurantePlatos[i].Restaurante.Id == id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+                registroExitoso = crudRestaurantePlatos.CrearRestaurantePlato(restPlato);
 
-        public void AnadirPlatos(int idRest, Plato plato)
-        {
-            for (int i = 0; i < _cuentaRestaurantePlatos; i++)
+                return registroExitoso;
+            }
+            catch (Exception ex)
             {
-                if (_restaurantePlatos[i].Restaurante.Id == idRest)
-                {
-                    _restaurantePlatos[i].Platos[_numeroPlatos] = plato;
-                    _numeroPlatos++;
-                }
+                System.Console.WriteLine(ex.Message);
+                return registroExitoso;
             }
         }
 
-        public void LimpiarPlatos(int id)
+        public List<RestaurantePlato> GetPorIdRestaurante(int id)
         {
-            for (int i = 0; i < _cuentaRestaurantePlatos; i++)
-            {
-                if (_restaurantePlatos[i].Restaurante.Id == id)
-                {
-                    _restaurantePlatos[i].Platos = new Plato[10];
-                }
-            }
-
-            _numeroPlatos = 0;
+            return crudRestaurantePlatos.ObtenerRestPlatoPorIdRestaurante(id);
         }
     }
 }
