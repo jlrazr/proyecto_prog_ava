@@ -41,6 +41,7 @@
             button_consul_clientes = new Button();
             button_consul_platos = new Button();
             button_consul_plato_rest = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // label_titulo
@@ -173,11 +174,22 @@
             button_consul_plato_rest.UseVisualStyleBackColor = true;
             button_consul_plato_rest.Click += button_consul_plato_rest_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(740, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(128, 38);
+            label1.TabIndex = 15;
+            label1.Text = "Servidor";
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(507, 911);
+            ClientSize = new Size(1578, 904);
+            Controls.Add(label1);
             Controls.Add(button_consul_plato_rest);
             Controls.Add(button_consul_extras);
             Controls.Add(button_consul_clientes);
@@ -212,5 +224,6 @@
         private Button button_consul_clientes;
         private Button button_consul_platos;
         private Button button_consul_plato_rest;
+        private Label label1;
     }
 }

@@ -1,5 +1,6 @@
 using AppServidor.Forms;
 using Libreria.Managers;
+using System.Threading;
 
 namespace AppServidor
 {
@@ -12,9 +13,14 @@ namespace AppServidor
         private ManagerRestaurantePlatos managerRestPlatos = new();
         private ManagerExtra managerExtra = new();
 
+
+
         public FormPrincipal()
         {
+            Servidor servidor = new Servidor(14100);
+            Thread hiloServidor = new Thread(new ThreadStart(servidor.Start));
             InitializeComponent();
+            hiloServidor.Start();
         }
 
         private void button_menu_reg_restaurante_Click(object sender, EventArgs e)
