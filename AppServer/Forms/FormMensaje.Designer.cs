@@ -44,7 +44,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(862, 148);
+            ClientSize = new Size(578, 164);
             Controls.Add(Label_mensaje);
             Name = "FormMensaje";
             Text = "FormMensaje";

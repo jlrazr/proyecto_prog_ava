@@ -42,6 +42,8 @@
             button_consul_platos = new Button();
             button_consul_plato_rest = new Button();
             label1 = new Label();
+            button_servidor_iniciar = new Button();
+            button_servidor_detener = new Button();
             SuspendLayout();
             // 
             // label_titulo
@@ -178,17 +180,39 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(740, 16);
+            label1.Location = new Point(979, 16);
             label1.Name = "label1";
             label1.Size = new Size(128, 38);
             label1.TabIndex = 15;
             label1.Text = "Servidor";
+            // 
+            // button_servidor_iniciar
+            // 
+            button_servidor_iniciar.Location = new Point(863, 71);
+            button_servidor_iniciar.Name = "button_servidor_iniciar";
+            button_servidor_iniciar.Size = new Size(179, 50);
+            button_servidor_iniciar.TabIndex = 16;
+            button_servidor_iniciar.Text = "Iniciar Servidor";
+            button_servidor_iniciar.UseVisualStyleBackColor = true;
+            button_servidor_iniciar.Click += button_servidor_iniciar_Click;
+            // 
+            // button_servidor_detener
+            // 
+            button_servidor_detener.Location = new Point(1048, 71);
+            button_servidor_detener.Name = "button_servidor_detener";
+            button_servidor_detener.Size = new Size(179, 50);
+            button_servidor_detener.TabIndex = 17;
+            button_servidor_detener.Text = "Detener Servidor";
+            button_servidor_detener.UseVisualStyleBackColor = true;
+            button_servidor_detener.Click += button_servidor_detener_Click;
             // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 904);
+            Controls.Add(button_servidor_detener);
+            Controls.Add(button_servidor_iniciar);
             Controls.Add(label1);
             Controls.Add(button_consul_plato_rest);
             Controls.Add(button_consul_extras);
@@ -225,5 +249,7 @@
         private Button button_consul_platos;
         private Button button_consul_plato_rest;
         private Label label1;
+        private Button button_servidor_iniciar;
+        private Button button_servidor_detener;
     }
 }

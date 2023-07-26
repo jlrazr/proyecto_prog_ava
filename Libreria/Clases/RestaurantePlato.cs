@@ -17,6 +17,7 @@ namespace Libreria.Clases
         // Constructor
         public RestaurantePlato(int rest, int platos)
         {
+            Id = GeneradorIds.GenerarID();
             IdPlato = platos;
             IdRestaurante = rest;
             FechaAsignacion = DateTime.Now;

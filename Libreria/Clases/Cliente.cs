@@ -12,6 +12,7 @@
         // Constructor
         public Cliente(string nombre, string primApellido, string segApellido, DateTime fechaNacimiento, char genero)
         {
+            Id = GeneradorIds.GenerarID();
             Nombre = nombre;
             PrimApellido = primApellido;
             SegApellido = segApellido;

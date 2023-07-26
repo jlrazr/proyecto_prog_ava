@@ -18,8 +18,8 @@ namespace Libreria.AccesoBD
         {
             bool registroExitoso = false;
             SqlConnection conexion;
-            string sentenciaSQL = "INSERT INTO dbo.CategoriaPlato (Descripcion, Estado)" +
-                                                   "VALUES (@Descripcion, @Estado)";
+            string sentenciaSQL = "INSERT INTO dbo.CategoriaPlato (IdCategoria, Descripcion, Estado)" +
+                                                          "VALUES (@IdCategoria, @Descripcion, @Estado)";
 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
@@ -34,6 +34,7 @@ namespace Libreria.AccesoBD
                     cmd.Connection.Open();
 
                     //Parámetros
+                    cmd.Parameters.AddWithValue("@IdCategoria", categoria.Id);
                     cmd.Parameters.AddWithValue("@Descripcion", categoria.Descripcion);
                     cmd.Parameters.AddWithValue("@Estado", categoria.Estado);
 

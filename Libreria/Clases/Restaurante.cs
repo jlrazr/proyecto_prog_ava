@@ -12,6 +12,7 @@
         // Constructor
         public Restaurante(string nombre, string direccion, bool estado, string telefono)
         {
+            Id = GeneradorIds.GenerarID();
             Nombre = nombre;
             Direccion = direccion;
             Estado = estado;

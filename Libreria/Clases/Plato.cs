@@ -14,6 +14,7 @@ namespace Libreria.Clases
         // Constructor
         public Plato(string nombre, int idCategoria, int precio)
         {
+            Id = GeneradorIds.GenerarID();
             Nombre = nombre;
             IdCategoria = idCategoria;
             Precio = precio;

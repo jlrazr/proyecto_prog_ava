@@ -9,6 +9,7 @@
         // Constructor
         public CategoriaPlato(string descripcion, bool estado)
         {
+            Id = GeneradorIds.GenerarID();
             Descripcion = descripcion;
             Estado = estado;
         }

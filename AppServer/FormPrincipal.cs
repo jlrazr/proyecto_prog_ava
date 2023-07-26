@@ -13,14 +13,15 @@ namespace AppServidor
         private ManagerRestaurantePlatos managerRestPlatos = new();
         private ManagerExtra managerExtra = new();
 
+        private bool servidorIniciado = false;
+        static Servidor servidor = new Servidor(14100);
+        Thread hiloServidor = new Thread(new ThreadStart(servidor.Start));
+
 
 
         public FormPrincipal()
         {
-            Servidor servidor = new Servidor(14100);
-            Thread hiloServidor = new Thread(new ThreadStart(servidor.Start));
             InitializeComponent();
-            hiloServidor.Start();
         }
 
         private void button_menu_reg_restaurante_Click(object sender, EventArgs e)
@@ -93,6 +94,25 @@ namespace AppServidor
         {
             var form = new FormMostrarPlatoRestaurante(managerPlatos, managerRestPlatos, managerRest);
             form.ShowDialog();
+        }
+
+        private void button_servidor_iniciar_Click(object sender, EventArgs e)
+        {
+            if (!servidorIniciado)
+            {
+                hiloServidor.Start();
+                servidorIniciado = !servidorIniciado;
+            }
+        }
+
+        private void button_servidor_detener_Click(object sender, EventArgs e)
+        {
+            if (!servidorIniciado)
+            {
+                servidor.Stop();
+                hiloServidor.Join();
+                servidorIniciado = !servidorIniciado;
+            }
         }
     }
 }

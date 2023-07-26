@@ -16,6 +16,7 @@ namespace Libreria.Clases
         // Constructor
         public Extra(string descripcion, int categoriaPlato, bool activo, int precio)
         {
+            Id = GeneradorIds.GenerarID();
             Descripcion = descripcion;
             IdCategoria = categoriaPlato;
             Estado = activo;
