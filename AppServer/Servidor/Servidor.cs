@@ -24,15 +24,32 @@ namespace AppServidor
             listener.Start();
             activo = true;
 
-            Debug.WriteLine($"Servidor iniciado en el puerto {puerto}");
-
             // Escucha a los clientes mientras esté activo
             while (activo)
             {
-                var cliente = listener.AcceptTcpClient();
-                // Crea un nuevo hilo para cada cliente
-                Thread clientThread = new Thread(() => ManejaCliente(cliente));
-                clientThread.Start();
+                if (!listener.Pending())
+                {
+                    Thread.Sleep(100); // Duerme el proceso para evitar espera ocupada
+                    continue;
+                }
+
+                try
+                {
+                    var cliente = listener.AcceptTcpClient();
+                    // Crea un nuevo hilo para cada cliente
+                    Thread clientThread = new Thread(() => ManejaCliente(cliente));
+                    clientThread.Start();
+                } catch (SocketException ex)
+                {
+                    if (!activo)
+                    {
+                        Console.WriteLine("Se ha detenido el servidor");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error del socket: " + ex.Message);
+                    }
+                }
             }
         }
 
@@ -56,8 +73,8 @@ namespace AppServidor
 
         public void Stop()
         {
-            activo = false;
             listener.Stop();
+            activo = false;
         }
     }
 }

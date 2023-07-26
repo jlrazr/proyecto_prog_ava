@@ -1,5 +1,6 @@
 using AppServidor.Forms;
 using Libreria.Managers;
+using System.Diagnostics;
 using System.Threading;
 
 namespace AppServidor
@@ -98,21 +99,36 @@ namespace AppServidor
 
         private void button_servidor_iniciar_Click(object sender, EventArgs e)
         {
-            if (!servidorIniciado)
+            if (servidorIniciado == false)
             {
-                hiloServidor.Start();
-                servidorIniciado = !servidorIniciado;
+                try
+                {
+                    hiloServidor.Start();
+                    label_estado_servidor.Text = "Servidor iniciado en el puerto 14100";
+                    servidorIniciado = !servidorIniciado;
+                } catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                
             }
         }
 
         private void button_servidor_detener_Click(object sender, EventArgs e)
         {
-            if (!servidorIniciado)
+            servidor.Stop();
+
+
+            if (hiloServidor.IsAlive)
             {
-                servidor.Stop();
+                Debug.WriteLine("aca jode el hp");
                 hiloServidor.Join();
-                servidorIniciado = !servidorIniciado;
             }
+            
+
+            servidorIniciado = false;
+            label_estado_servidor.Text = "Servidor detenido";
+            
         }
     }
 }

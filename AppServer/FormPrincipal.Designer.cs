@@ -44,6 +44,8 @@
             label1 = new Label();
             button_servidor_iniciar = new Button();
             button_servidor_detener = new Button();
+            label_estado_servidor = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // label_titulo
@@ -206,11 +208,32 @@
             button_servidor_detener.UseVisualStyleBackColor = true;
             button_servidor_detener.Click += button_servidor_detener_Click;
             // 
+            // label_estado_servidor
+            // 
+            label_estado_servidor.AutoSize = true;
+            label_estado_servidor.Location = new Point(932, 131);
+            label_estado_servidor.Name = "label_estado_servidor";
+            label_estado_servidor.Size = new Size(154, 25);
+            label_estado_servidor.TabIndex = 18;
+            label_estado_servidor.Text = "Servidor detenido";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(863, 131);
+            label2.Name = "label2";
+            label2.Size = new Size(74, 25);
+            label2.TabIndex = 19;
+            label2.Text = "Estado:";
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 904);
+            Controls.Add(label2);
+            Controls.Add(label_estado_servidor);
             Controls.Add(button_servidor_detener);
             Controls.Add(button_servidor_iniciar);
             Controls.Add(label1);
@@ -251,5 +274,7 @@
         private Label label1;
         private Button button_servidor_iniciar;
         private Button button_servidor_detener;
+        private Label label_estado_servidor;
+        private Label label2;
     }
 }
