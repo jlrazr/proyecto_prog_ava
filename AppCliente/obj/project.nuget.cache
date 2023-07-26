@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ydmcOn0yO9/MNpy3Ez/XwfhKPC3rOyRTpMhJQma1iIljzRdriHAhfHUCUZQ3xlYmfyp27xTWzHXKlV9T2nnY0w==",
+  "dgSpecHash": "kVo/7yayIv444xGpxtgTNRgZqwHSlyizNSF+WHIV1vUG0h2bMrsCtb0rJ/+aFNqYJ8hWiQb6J52V9CXDiBcbAQ==",
   "success": true,
-  "projectFilePath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\AppCliente\\AppCliente.csproj",
+  "projectFilePath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\AppCliente\\AppCliente.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jlraz\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\jlraz\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

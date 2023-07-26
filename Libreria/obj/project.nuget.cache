@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I7sF/Dm1YE20Awg+kiFyp+zE1ojftQxI1Ih5BsxwhMwWCk09GsvmHe6j8ybeuLNx7sBL46DPsa0H6Ds4fJmSRw==",
+  "dgSpecHash": "rGycd1YkZ1mci3HLHgt0XRQZKAEk/flaHj02jh2jl4bLAjkIY2RGukDl01QXrse2+GXII96sTpr1IKiLmbBH4A==",
   "success": true,
-  "projectFilePath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\Libreria\\Libreria.csproj",
+  "projectFilePath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\Libreria\\Libreria.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jlraz\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\jlraz\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

@@ -806,11 +806,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\AppServer\\AppServidor.csproj",
+      "projectUniqueName": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\AppServer\\AppServidor.csproj",
       "projectName": "AppServidor",
-      "projectPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\AppServer\\AppServidor.csproj",
+      "projectPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\AppServer\\AppServidor.csproj",
       "packagesPath": "C:\\Users\\jlraz\\.nuget\\packages\\",
-      "outputPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\AppServer\\obj\\",
+      "outputPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\AppServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jlraz\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -827,8 +827,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\Libreria\\Libreria.csproj": {
-              "projectPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\Libreria\\Libreria.csproj"
+            "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\Libreria\\Libreria.csproj": {
+              "projectPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\Libreria\\Libreria.csproj"
             }
           }
         }

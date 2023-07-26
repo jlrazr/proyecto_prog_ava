@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\Libreria\\Libreria.csproj": {}
+    "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\Libreria\\Libreria.csproj": {}
   },
   "projects": {
-    "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\Libreria\\Libreria.csproj": {
+    "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\Libreria\\Libreria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\Libreria\\Libreria.csproj",
+        "projectUniqueName": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\Libreria\\Libreria.csproj",
         "projectName": "Libreria",
-        "projectPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\Libreria\\Libreria.csproj",
+        "projectPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\Libreria\\Libreria.csproj",
         "packagesPath": "C:\\Users\\jlraz\\.nuget\\packages\\",
-        "outputPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\Libreria\\obj\\",
+        "outputPath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\Libreria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jlraz\\AppData\\Roaming\\NuGet\\NuGet.Config",

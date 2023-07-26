@@ -1,46 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Forms\FormMostrarPlatoRestaurante.cs">
+    <Compile Update="CapaPresentacion\FormMostrarPlatoRestaurante.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormMensaje.cs">
+    <Compile Update="CapaPresentacion\FormMensaje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormMostrarCategPlatos.cs">
+    <Compile Update="CapaPresentacion\FormMostrarCategPlatos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormMostrarClientes.cs">
+    <Compile Update="CapaPresentacion\FormMostrarClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormMostrarExtras.cs">
+    <Compile Update="CapaPresentacion\FormMostrarExtras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormMostrarPlatos.cs">
+    <Compile Update="CapaPresentacion\FormMostrarPlatos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormMostrarRestaurantes.cs">
+    <Compile Update="CapaPresentacion\FormMostrarRestaurantes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FormPrincipal.cs">
+    <Compile Update="CapaPresentacion\FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormRegistrarCategPlato.cs">
+    <Compile Update="CapaPresentacion\FormRegistrarCategPlato.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormRegistrarCliente.cs">
+    <Compile Update="CapaPresentacion\FormRegistrarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormRegistrarExtra.cs">
+    <Compile Update="CapaPresentacion\FormRegistrarExtra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormRegistrarPlato.cs">
+    <Compile Update="CapaPresentacion\FormRegistrarPlato.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormRegistrarPlatoRestaurante.cs">
+    <Compile Update="CapaPresentacion\FormRegistrarPlatoRestaurante.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormRegistrarRestaurante.cs">
+    <Compile Update="CapaPresentacion\FormRegistrarRestaurante.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

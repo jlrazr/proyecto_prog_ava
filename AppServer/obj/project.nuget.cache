@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X7aLvh/F14NzA/5o/32Yl2xcdOuQ/DqcVbg1E/ITFWkXVWxgQ6YNiJh5mrInTd/kHrdSz16aIyAMhFx4wHo9iA==",
+  "dgSpecHash": "ON68v0/uxdBLLtCyvuzLTjJR2zI3FNP3lIgbNZjspMwrE8rFVW3PtKkHE0bhWueDc0UdCWhpG7IJLxfKbqahzA==",
   "success": true,
-  "projectFilePath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Tarea2\\Tarea2\\AppServer\\AppServidor.csproj",
+  "projectFilePath": "D:\\UNED\\IIQ2023\\Programacion Avanzada\\Proyecto\\proyecto\\AppServer\\AppServidor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jlraz\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\jlraz\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
