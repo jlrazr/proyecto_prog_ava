@@ -73,8 +73,15 @@ namespace AppServidor
 
         public void Stop()
         {
-            listener.Stop();
-            activo = false;
+            try
+            {
+                listener.Stop();
+                activo = false;
+            } catch (SocketException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
         }
     }
 }
