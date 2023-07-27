@@ -1,4 +1,6 @@
 using AppCliente.Forms;
+using Libreria.Clases;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace AppCliente
@@ -8,7 +10,7 @@ namespace AppCliente
         public FormPrincipal()
         {
             InitializeComponent();
-            button_cliente_logout.Visible = false;
+            button_cliente_logout.Enabled = false;
         }
 
         Boolean logueado = false;
@@ -28,10 +30,27 @@ namespace AppCliente
                 }
                 else
                 {
+                    Conexion conexion = new Conexion();
+                    var response = conexion.ValidateClientId(idIngresado);
+
+                    Cliente clienteConectado = new(response.Cliente.Nombre, response.Cliente.PrimApellido, response.Cliente.SegApellido, response.Cliente.FechaNacimiento, response.Cliente.Genero);
+                    clienteConectado.Id = response.Cliente.Id;
+
+                    if (response.Existe)
+                    {
+                        label_cliente.Text = "Cliente: " + clienteConectado.Nombre + " " + clienteConectado.PrimApellido + "\nID: " + clienteConectado.Id;
+                    }
+                    else
+                    {
+                        label_cliente.Text = "Cliente: No existe un cliente con el ID ingresado";
+                    }
+
                     logueado = !logueado;
-                    groupBox_login.Visible = !logueado;
-                    button_cliente_logout.Visible = logueado;
+                    button_cliente_login.Enabled = false;
+                    button_cliente_logout.Enabled = false;
+                    textBox_cliente_id_login.Enabled = false;
                     textBox_cliente_id_login.Text = "";
+                    button_cliente_logout.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -44,8 +63,9 @@ namespace AppCliente
         private void button_cliente_logout_Click(object sender, EventArgs e)
         {
             logueado = !logueado;
-            groupBox_login.Visible = !logueado;
-            button_cliente_logout.Visible = logueado;
+            button_cliente_login.Enabled = true;
+            textBox_cliente_id_login.Enabled = true;
+            button_cliente_logout.Enabled = false;
         }
     }
 }

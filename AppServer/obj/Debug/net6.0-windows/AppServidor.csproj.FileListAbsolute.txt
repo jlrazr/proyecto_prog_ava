@@ -98,3 +98,4 @@ D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppServer\obj\Debug\net6
 D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppServer\obj\Debug\net6.0-windows\AppServidor.pdb
 D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppServer\obj\Debug\net6.0-windows\AppServidor.genruntimeconfig.cache
 D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppServer\obj\Debug\net6.0-windows\ref\AppServidor.dll
+D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppServer\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

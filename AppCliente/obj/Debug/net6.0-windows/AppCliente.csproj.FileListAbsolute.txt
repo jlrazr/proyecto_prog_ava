@@ -72,3 +72,4 @@ D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppCliente\obj\Debug\net
 D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppCliente\obj\Debug\net6.0-windows\AppCliente.pdb
 D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppCliente\obj\Debug\net6.0-windows\AppCliente.genruntimeconfig.cache
 D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppCliente\obj\Debug\net6.0-windows\ref\AppCliente.dll
+D:\UNED\IIQ2023\Programacion Avanzada\Proyecto\proyecto\AppCliente\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             button_cliente_login = new Button();
-            label1 = new Label();
             textBox_cliente_id_login = new TextBox();
             groupBox_login = new GroupBox();
+            label_cliente = new Label();
             label2 = new Label();
             button_cliente_logout = new Button();
             groupBox_pedido = new GroupBox();
@@ -40,7 +40,7 @@
             // 
             // button_cliente_login
             // 
-            button_cliente_login.Location = new Point(277, 176);
+            button_cliente_login.Location = new Point(6, 92);
             button_cliente_login.Name = "button_cliente_login";
             button_cliente_login.Size = new Size(230, 54);
             button_cliente_login.TabIndex = 0;
@@ -48,38 +48,39 @@
             button_cliente_login.UseVisualStyleBackColor = true;
             button_cliente_login.Click += button_cliente_login_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(6, 27);
-            label1.Name = "label1";
-            label1.Size = new Size(191, 25);
-            label1.TabIndex = 1;
-            label1.Text = "Ingresar a la aplicación";
-            // 
             // textBox_cliente_id_login
             // 
-            textBox_cliente_id_login.Location = new Point(277, 121);
+            textBox_cliente_id_login.Location = new Point(6, 55);
             textBox_cliente_id_login.Name = "textBox_cliente_id_login";
             textBox_cliente_id_login.Size = new Size(230, 31);
             textBox_cliente_id_login.TabIndex = 2;
             // 
             // groupBox_login
             // 
+            groupBox_login.Controls.Add(label_cliente);
             groupBox_login.Controls.Add(label2);
+            groupBox_login.Controls.Add(button_cliente_logout);
             groupBox_login.Controls.Add(button_cliente_login);
             groupBox_login.Controls.Add(textBox_cliente_id_login);
-            groupBox_login.Controls.Add(label1);
             groupBox_login.Location = new Point(12, 12);
             groupBox_login.Name = "groupBox_login";
-            groupBox_login.Size = new Size(854, 273);
+            groupBox_login.Size = new Size(854, 239);
             groupBox_login.TabIndex = 3;
             groupBox_login.TabStop = false;
+            // 
+            // label_cliente
+            // 
+            label_cliente.AutoSize = true;
+            label_cliente.Location = new Point(449, 27);
+            label_cliente.Name = "label_cliente";
+            label_cliente.Size = new Size(74, 25);
+            label_cliente.TabIndex = 0;
+            label_cliente.Text = "Cliente: ";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(287, 75);
+            label2.Location = new Point(6, 27);
             label2.Name = "label2";
             label2.Size = new Size(196, 25);
             label2.TabIndex = 2;
@@ -87,9 +88,9 @@
             // 
             // button_cliente_logout
             // 
-            button_cliente_logout.Location = new Point(702, 847);
+            button_cliente_logout.Location = new Point(6, 152);
             button_cliente_logout.Name = "button_cliente_logout";
-            button_cliente_logout.Size = new Size(164, 45);
+            button_cliente_logout.Size = new Size(230, 53);
             button_cliente_logout.TabIndex = 4;
             button_cliente_logout.Text = "Cerrar Sesión";
             button_cliente_logout.UseVisualStyleBackColor = true;
@@ -97,9 +98,9 @@
             // 
             // groupBox_pedido
             // 
-            groupBox_pedido.Location = new Point(12, 291);
+            groupBox_pedido.Location = new Point(12, 257);
             groupBox_pedido.Name = "groupBox_pedido";
-            groupBox_pedido.Size = new Size(854, 550);
+            groupBox_pedido.Size = new Size(854, 635);
             groupBox_pedido.TabIndex = 5;
             groupBox_pedido.TabStop = false;
             // 
@@ -109,7 +110,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(878, 904);
             Controls.Add(groupBox_pedido);
-            Controls.Add(button_cliente_logout);
             Controls.Add(groupBox_login);
             Name = "FormPrincipal";
             Text = "RESTUNED Pedidos";
@@ -121,11 +121,11 @@
         #endregion
 
         private Button button_cliente_login;
-        private Label label1;
         private TextBox textBox_cliente_id_login;
         private GroupBox groupBox_login;
         private Label label2;
         private Button button_cliente_logout;
         private GroupBox groupBox_pedido;
+        private Label label_cliente;
     }
 }

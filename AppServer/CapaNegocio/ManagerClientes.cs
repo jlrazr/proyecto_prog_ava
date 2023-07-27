@@ -1,5 +1,6 @@
 ﻿using AppServidor.CapaDatos;
 using Libreria.Clases;
+using System.Diagnostics;
 
 namespace AppServidor.CapaNegocio
 {
@@ -31,9 +32,20 @@ namespace AppServidor.CapaNegocio
             return crudClientes.ObtenerTodosCliente();
         }
 
-        public Cliente GetClientePorId(int  id)
+        public Cliente GetClientePorId(int id)
         {
-            return null;
+            try
+            {
+                return crudClientes.ObtenerClientePorId(id);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
         }
+            
+
+
     }
 }

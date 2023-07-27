@@ -46,6 +46,7 @@
             button_servidor_detener = new Button();
             label_estado_servidor = new Label();
             label2 = new Label();
+            textBox_servidor_clientes_conect = new TextBox();
             SuspendLayout();
             // 
             // label_titulo
@@ -227,11 +228,21 @@
             label2.TabIndex = 19;
             label2.Text = "Estado:";
             // 
+            // textBox_servidor_clientes_conect
+            // 
+            textBox_servidor_clientes_conect.Location = new Point(631, 210);
+            textBox_servidor_clientes_conect.Multiline = true;
+            textBox_servidor_clientes_conect.Name = "textBox_servidor_clientes_conect";
+            textBox_servidor_clientes_conect.ReadOnly = true;
+            textBox_servidor_clientes_conect.Size = new Size(411, 672);
+            textBox_servidor_clientes_conect.TabIndex = 20;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 904);
+            Controls.Add(textBox_servidor_clientes_conect);
             Controls.Add(label2);
             Controls.Add(label_estado_servidor);
             Controls.Add(button_servidor_detener);
@@ -276,5 +287,6 @@
         private Button button_servidor_detener;
         private Label label_estado_servidor;
         private Label label2;
+        private TextBox textBox_servidor_clientes_conect;
     }
 }

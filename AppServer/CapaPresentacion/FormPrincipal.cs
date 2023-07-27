@@ -14,12 +14,14 @@ namespace AppServidor
         private ManagerExtra managerExtra = new();
 
         private bool servidorIniciado = false;
-        static Servidor servidor = new Servidor(14100);
+        static Servidor servidor = new Servidor();
         Thread hiloServidor = new Thread(new ThreadStart(servidor.Start));
+        
 
         public FormPrincipal()
         {
             InitializeComponent();
+            button_servidor_detener.Enabled = false;
         }
 
         private void button_menu_reg_restaurante_Click(object sender, EventArgs e)
@@ -103,11 +105,14 @@ namespace AppServidor
                     hiloServidor.Start();
                     label_estado_servidor.Text = "Servidor iniciado en el puerto 14100";
                     servidorIniciado = !servidorIniciado;
-                } catch (Exception ex)
+                    button_servidor_detener.Enabled = true;
+                    button_servidor_iniciar.Enabled = false;
+                }
+                catch (Exception ex)
                 {
                     Debug.WriteLine(ex);
                 }
-                
+
             }
         }
 
@@ -115,17 +120,17 @@ namespace AppServidor
         {
             servidor.Stop();
 
-
             if (hiloServidor.IsAlive)
             {
-                Debug.WriteLine("aca jode el hp");
+                Debug.WriteLine("Sigue con vida el hilo");
                 hiloServidor.Join();
             }
-            
 
             servidorIniciado = false;
             label_estado_servidor.Text = "Servidor detenido";
-            
+            button_servidor_iniciar.Enabled = true;
+            button_servidor_detener.Enabled = false;
+
         }
     }
 }

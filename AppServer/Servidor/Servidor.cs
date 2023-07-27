@@ -4,84 +4,89 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
+using Libreria.Clases;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using AppServidor.CapaNegocio;
 
 namespace AppServidor
 {
     public class Servidor
     {
-        private TcpListener listener;
-        private readonly int puerto;
-        private bool activo;
+        private TcpListener _listener;
+        private bool _isRunning;
+        private SemaphoreSlim _semaphore;
+        private const int MaxClients = 7;
 
-        public Servidor(int numPuerto)
+        public Servidor()
         {
-            puerto = numPuerto;
+            _listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 14100);
+            _semaphore = new SemaphoreSlim(MaxClients, MaxClients);
         }
 
         public void Start()
         {
-            listener = new TcpListener(IPAddress.Any, puerto);
-            listener.Start();
-            activo = true;
+            _listener.Start();
+            _isRunning = true;
+            Console.WriteLine("Server started...");
 
-            // Escucha a los clientes mientras esté activo
-            while (activo)
+            while (_isRunning)
             {
-                if (!listener.Pending())
-                {
-                    Thread.Sleep(100); // Duerme el proceso para evitar espera ocupada
-                    continue;
-                }
-
                 try
                 {
-                    var cliente = listener.AcceptTcpClient();
-                    // Crea un nuevo hilo para cada cliente
-                    Thread clientThread = new Thread(() => ManejaCliente(cliente));
-                    clientThread.Start();
-                } catch (SocketException ex)
+                    var cliente = _listener.AcceptTcpClient();
+                    ThreadPool.QueueUserWorkItem(HandleClient, cliente);
+                }
+                catch (SocketException ex)
                 {
-                    if (!activo)
-                    {
-                        Console.WriteLine("Se ha detenido el servidor");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error del socket: " + ex.Message);
-                    }
+                    Debug.WriteLine(ex.Message);
                 }
             }
-        }
-
-        //Cliente falso. Borrar luego de implementar la app cliente
-        private void ManejaCliente(TcpClient cliente)
-        {
-            Debug.WriteLine("Client connected. Handling request...");
-
-            using (var stream = cliente.GetStream())
-            using (var lector = new BinaryReader(stream))
-            using (var escritor = new BinaryWriter(stream))
-            {
-                var dataFalsa = "Fake restaurant data from the database";
-
-                escritor.Write(dataFalsa);
-            }
-
-            // Close the client connection
-            cliente.Close();
         }
 
         public void Stop()
         {
+            _isRunning = false;
+            _listener.Stop();
+        }
+
+        private void HandleClient(object state)
+        {
+            _semaphore.Wait();
+
+            var cliente = state as TcpClient;
+
             try
             {
-                listener.Stop();
-                activo = false;
-            } catch (SocketException ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
+                using (var stream = cliente.GetStream())
+                using (var reader = new StreamReader(stream, Encoding.UTF8))
+                using (var writer = new StreamWriter(stream, Encoding.UTF8))
+                {
+                    // Lee los datos serializados enviados desde el cliente
+                    var clientRequestJson = reader.ReadLine();
+                    var clientRequest = JsonConvert.DeserializeObject<ClienteDTORequest>(clientRequestJson);
 
+                    // Procesa el request
+                    Cliente clientObj = new ManagerClientes().GetClientePorId(clientRequest.IdCliente);
+                    var response = new ClienteDTOResponse
+                    {
+                        Existe = clientObj != null,
+                        Cliente = clientObj
+                    };
+
+                    // Serializa y envía la respuesta de vuelta al cliente
+                    var responseJson = JsonConvert.SerializeObject(response);
+                    writer.WriteLine(responseJson);
+                    writer.Flush();
+                }
+            }
+            finally
+            {
+                cliente.Close();
+                _semaphore.Release();
+            }
         }
     }
 }

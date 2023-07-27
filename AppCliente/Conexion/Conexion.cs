@@ -1,49 +1,32 @@
 ﻿using System;
-using System.Net.Sockets;
 using System.IO;
+using System.Net.Sockets;
+using System.Text;
+using Libreria.Clases;
+using Newtonsoft.Json;
 
-namespace AppCliente.Clases
+public class Conexion
 {
-    public class Conexion
+    private const string ServerIP = "127.0.0.1";
+    private const int ServerPort = 14100;
+
+    public ClienteDTOResponse ValidateClientId(int clientId)
     {
-        private TcpClient cliente;
-        private string ipServidor = "127.0.0.1";
-        private int puerto = 14100;
-
-        public Conexion()
+        using (var client = new TcpClient(ServerIP, ServerPort))
+        using (var stream = client.GetStream())
+        using (var writer = new StreamWriter(stream, Encoding.UTF8))
+        using (var reader = new StreamReader(stream, Encoding.UTF8))
         {
-            cliente = new TcpClient();
-        }
+            // Prepare and send request
+            var request = new ClienteDTORequest { IdCliente = clientId };
+            var requestJson = JsonConvert.SerializeObject(request);
+            writer.WriteLine(requestJson);
+            writer.Flush();
 
-        public bool Conectar()
-        {
-            try
-            {
-                cliente.Connect(ipServidor, puerto);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool ValidaIdUsuario(int idUsuario)
-        {
-            using (var stream = cliente.GetStream())
-            using (var writer = new BinaryWriter(stream))
-            using (var reader = new BinaryReader(stream))
-            {
-                writer.Write(idUsuario);
-                return reader.ReadBoolean();
-            }
-        }
-
-        // Other methods for sending requests and receiving data would go here...
-
-        public void Close()
-        {
-            cliente.Close();
+            // Get and process response
+            var responseJson = reader.ReadLine();
+            var response = JsonConvert.DeserializeObject<ClienteDTOResponse>(responseJson);
+            return response;
         }
     }
 }
