@@ -16,8 +16,8 @@ namespace AppCliente
 
         Boolean logueado = false;
         private List<Restaurante> restaurantes;
-        private List<Plato> platos;
-        private List<Extra> extras;
+        private List<Plato> platosElegidos = new();
+        private List<Extra> extrasElegidas = new();
 
 
         private void button_cliente_login_Click(object sender, EventArgs e)
@@ -83,6 +83,7 @@ namespace AppCliente
             if (comboBox_lista_restaurantes.SelectedItem != null && comboBox_lista_restaurantes.SelectedItem is Restaurante restauranteSeleccionado)
             {
                 int idRestSeleccionado = restauranteSeleccionado.Id;
+                List<Plato> platos = new();
 
                 var restaurante = new Conexion().FetchRestauranteById(idRestSeleccionado);
                 var listaIdsPlatos = new List<int>();
@@ -97,7 +98,7 @@ namespace AppCliente
 
                     foreach (var idPlato in listaIdsPlatos)
                     {
-                        var plato = new Conexion().FetchPlatoById(idPlato);
+                        Plato plato = new Conexion().FetchPlatoById(idPlato);
                         platos.Add(plato);
                     }
 
