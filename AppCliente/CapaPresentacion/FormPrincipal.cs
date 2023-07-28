@@ -14,6 +14,7 @@ namespace AppCliente
         }
 
         Boolean logueado = false;
+        private List<Restaurante> restaurantes;
 
         private void button_cliente_login_Click(object sender, EventArgs e)
         {
@@ -33,10 +34,11 @@ namespace AppCliente
                     Conexion conexion = new Conexion();
                     var response = conexion.ValidateClientId(idIngresado);
 
-                    Cliente clienteConectado = new(response.Cliente.Nombre, response.Cliente.PrimApellido, response.Cliente.SegApellido, response.Cliente.FechaNacimiento, response.Cliente.Genero);
-                    clienteConectado.Id = response.Cliente.Id;
 
-                    if (response.Existe)
+                    Cliente clienteConectado = new(response.Nombre, response.PrimApellido, response.SegApellido, response.FechaNacimiento, response.Genero);
+                    clienteConectado.Id = response.Id;
+
+                    if (response != null)
                     {
                         label_cliente.Text = "Cliente: " + clienteConectado.Nombre + " " + clienteConectado.PrimApellido + "\nID: " + clienteConectado.Id;
                     }
@@ -52,6 +54,9 @@ namespace AppCliente
                     textBox_cliente_id_login.Text = "";
                     button_cliente_logout.Enabled = true;
                 }
+
+                restaurantes = new Conexion().FetchAllRestaurantes();
+                comboBox_lista_restaurantes.DataSource = restaurantes;
             }
             catch (Exception ex)
             {

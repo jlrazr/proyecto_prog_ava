@@ -89,6 +89,13 @@ namespace AppServidor
                             }
                             break;
 
+                        case "GetAllRestaurantes":
+                            var restaurantes = new ManagerRestaurantes().GetTodos();
+                            var restaurantesJson = JsonConvert.SerializeObject(restaurantes);
+                            var respuesta = new ServerResponse { Success = true, Data = restaurantesJson };
+                            writer.WriteLine(JsonConvert.SerializeObject(respuesta));
+                            break;
+
                         // Add more cases as needed
 
                         default:
