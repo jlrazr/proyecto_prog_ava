@@ -18,6 +18,7 @@ namespace AppCliente
         private List<Restaurante> restaurantes;
         private List<Plato> platosElegidos = new();
         private List<Extra> extrasElegidas = new();
+        private Cliente clienteActivo;
 
 
         private void button_cliente_login_Click(object sender, EventArgs e)
@@ -45,6 +46,7 @@ namespace AppCliente
                     if (response != null)
                     {
                         label_cliente.Text = "Cliente: " + clienteConectado.Nombre + " " + clienteConectado.PrimApellido + "\nID: " + clienteConectado.Id;
+                        clienteActivo = clienteConectado;
                     }
                     else
                     {
@@ -102,7 +104,8 @@ namespace AppCliente
                         platos.Add(plato);
                     }
 
-                    dataGridView_platos_disponibles.DataSource = platos.Where(x => x != null).ToList(); // Actualiza el datagrid con la lista de platos relacionados al restaurante
+                    // Actualiza el datagrid con la lista de platos relacionados al restaurante
+                    dataGridView_platos_disponibles.DataSource = platos.Where(x => x != null).ToList(); 
                 }
             }
             else
@@ -110,6 +113,22 @@ namespace AppCliente
                 var mensaje_errorReg = new FormMensaje("Ha ocurrido un error. Verifique los datos y vuelva a intentarlo");
                 mensaje_errorReg.ShowDialog();
             }
+        }
+
+        private void button_anadir_platos_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView_platos_disponibles.SelectedRows)
+            {
+                if (row.DataBoundItem is Plato platoSeleccionado)
+                {
+                    platosElegidos.Add(platoSeleccionado);
+
+                    dataGridView_platos_elegidos.DataSource = platosElegidos.Where(x => x != null).ToList();
+                }
+            }
+
+            var mensaje_platosElegidos = new FormMensaje("El/los platos han sido añadidos al pedido.");
+            mensaje_platosElegidos.ShowDialog();
         }
     }
 }
