@@ -2,6 +2,7 @@ using AppCliente.Forms;
 using Libreria.Clases;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net.Sockets;
 
 namespace AppCliente
 {
@@ -15,6 +16,9 @@ namespace AppCliente
 
         Boolean logueado = false;
         private List<Restaurante> restaurantes;
+        private List<Plato> platos;
+        private List<Extra> extras;
+
 
         private void button_cliente_login_Click(object sender, EventArgs e)
         {
@@ -56,7 +60,8 @@ namespace AppCliente
                 }
 
                 restaurantes = new Conexion().FetchAllRestaurantes();
-                comboBox_lista_restaurantes.DataSource = restaurantes;
+                comboBox_lista_restaurantes.DataSource = restaurantes.Where(x => x != null && x.Estado == true).ToList();
+                comboBox_lista_restaurantes.DropDownStyle = ComboBoxStyle.DropDownList;
             }
             catch (Exception ex)
             {
@@ -71,6 +76,39 @@ namespace AppCliente
             button_cliente_login.Enabled = true;
             textBox_cliente_id_login.Enabled = true;
             button_cliente_logout.Enabled = false;
+        }
+
+        private void comboBox_lista_restaurantes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_lista_restaurantes.SelectedItem != null && comboBox_lista_restaurantes.SelectedItem is Restaurante restauranteSeleccionado)
+            {
+                int idRestSeleccionado = restauranteSeleccionado.Id;
+
+                var restaurante = new Conexion().FetchRestauranteById(idRestSeleccionado);
+                var listaIdsPlatos = new List<int>();
+                if (restaurante != null) //Ojo que podría venir nulo y generar errores. Ver mas tarde
+                {
+                    List<RestaurantePlato> asignaciones = new Conexion().FetchPlatoRestaurantesByIdRestaurante(idRestSeleccionado);
+
+                    foreach (var asignacion in asignaciones)
+                    {
+                        listaIdsPlatos.Add(asignacion.IdPlato);
+                    }
+
+                    foreach (var idPlato in listaIdsPlatos)
+                    {
+                        var plato = new Conexion().FetchPlatoById(idPlato);
+                        platos.Add(plato);
+                    }
+
+                    dataGridView_platos_disponibles.DataSource = platos.Where(x => x != null).ToList(); // Actualiza el datagrid con la lista de platos relacionados al restaurante
+                }
+            }
+            else
+            {
+                var mensaje_errorReg = new FormMensaje("Ha ocurrido un error. Verifique los datos y vuelva a intentarlo");
+                mensaje_errorReg.ShowDialog();
+            }
         }
     }
 }

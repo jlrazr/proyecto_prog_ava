@@ -33,6 +33,11 @@ namespace AppServidor.CapaNegocio
             return crudRestaurantes.ObtenerTodosRestaurantes();
         }
 
+        public List<Restaurante> GetActivos()
+        {
+            return crudRestaurantes.ObtenerTodosRestaurantesActivos();
+        }
+        
         public Restaurante GetPorId(int id)
         {
             try

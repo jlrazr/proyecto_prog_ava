@@ -42,7 +42,7 @@
             comboBox_lista_restaurantes = new ComboBox();
             label1 = new Label();
             dataGridView3 = new DataGridView();
-            dataGridView4 = new DataGridView();
+            dataGridView_platos_disponibles = new DataGridView();
             dataGridView2 = new DataGridView();
             dataGridView1 = new DataGridView();
             button_hacer_pedido = new Button();
@@ -51,7 +51,7 @@
             button_cliente_logout = new Button();
             groupBox_login.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_platos_disponibles).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -86,7 +86,7 @@
             groupBox_login.Controls.Add(comboBox_lista_restaurantes);
             groupBox_login.Controls.Add(label1);
             groupBox_login.Controls.Add(dataGridView3);
-            groupBox_login.Controls.Add(dataGridView4);
+            groupBox_login.Controls.Add(dataGridView_platos_disponibles);
             groupBox_login.Controls.Add(dataGridView2);
             groupBox_login.Controls.Add(dataGridView1);
             groupBox_login.Controls.Add(button_hacer_pedido);
@@ -180,6 +180,7 @@
             comboBox_lista_restaurantes.Name = "comboBox_lista_restaurantes";
             comboBox_lista_restaurantes.Size = new Size(575, 33);
             comboBox_lista_restaurantes.TabIndex = 11;
+            comboBox_lista_restaurantes.SelectedIndexChanged += comboBox_lista_restaurantes_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -200,15 +201,15 @@
             dataGridView3.Size = new Size(638, 249);
             dataGridView3.TabIndex = 9;
             // 
-            // dataGridView4
+            // dataGridView_platos_disponibles
             // 
-            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView4.Location = new Point(6, 289);
-            dataGridView4.Name = "dataGridView4";
-            dataGridView4.RowHeadersWidth = 62;
-            dataGridView4.RowTemplate.Height = 33;
-            dataGridView4.Size = new Size(575, 249);
-            dataGridView4.TabIndex = 8;
+            dataGridView_platos_disponibles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_platos_disponibles.Location = new Point(6, 289);
+            dataGridView_platos_disponibles.Name = "dataGridView_platos_disponibles";
+            dataGridView_platos_disponibles.RowHeadersWidth = 62;
+            dataGridView_platos_disponibles.RowTemplate.Height = 33;
+            dataGridView_platos_disponibles.Size = new Size(575, 249);
+            dataGridView_platos_disponibles.TabIndex = 8;
             // 
             // dataGridView2
             // 
@@ -279,7 +280,7 @@
             groupBox_login.ResumeLayout(false);
             groupBox_login.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_platos_disponibles).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -300,7 +301,7 @@
         private ComboBox comboBox_lista_restaurantes;
         private Label label1;
         private DataGridView dataGridView3;
-        private DataGridView dataGridView4;
+        private DataGridView dataGridView_platos_disponibles;
         private Label label4;
         private Label label5;
         private Label label6;

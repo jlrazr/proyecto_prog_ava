@@ -59,4 +59,70 @@ public class Conexion
             }
         }
     }
+
+    public Restaurante FetchRestauranteById(int idRestaurante)
+    {
+        var request = new ServerRequest { ActionType = "GetRestauranteById", Data = JsonConvert.SerializeObject(idRestaurante) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            return JsonConvert.DeserializeObject<Restaurante>(response.Data);
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return null;
+        }
+    }
+
+    public List<RestaurantePlato> FetchPlatoRestaurantesByIdRestaurante(int idRestaurante)
+    {
+        var request = new ServerRequest { ActionType = "GetPlatoRestauranteByIdRestaurante", Data = JsonConvert.SerializeObject(idRestaurante) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            return JsonConvert.DeserializeObject<List<RestaurantePlato>>(response.Data);
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return null;
+        }
+    }
+
+    public Plato FetchPlatoById(int idPlato)
+    {
+        var request = new ServerRequest { ActionType = "GetPlatoById", Data = JsonConvert.SerializeObject(idPlato) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            return JsonConvert.DeserializeObject<Plato>(response.Data);
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return null;
+        }
+    }
 }

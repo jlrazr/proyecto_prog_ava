@@ -86,21 +86,73 @@ namespace AppServidor
                             }
                             else
                             {
-                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Cliente not found" }));
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Cliente no encontrado" }));
                             }
                             break;
 
                         case "GetAllRestaurantes":
-                            var restaurantes = new ManagerRestaurantes().GetTodos();
+                            var restaurantes = new ManagerRestaurantes().GetActivos();
                             var restaurantesJson = JsonConvert.SerializeObject(restaurantes);
                             var respuesta = new ServerResponse { Success = true, Data = restaurantesJson };
                             writer.WriteLine(JsonConvert.SerializeObject(respuesta));
                             break;
 
-                        // Add more cases as needed
+                        case "GetRestauranteById":
+                            int idRestaurante = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            Restaurante restauranteObj = new ManagerRestaurantes().GetPorId(idRestaurante);
+                            if (restauranteObj != null)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(restauranteObj)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Restaurante no encontrado" }));
+                            }
+                            break;
+
+                        case "GetPlatoRestauranteByIdRestaurante":
+                            int idRestauranteRequested = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            List<RestaurantePlato> restaurantePlatos = new ManagerRestaurantePlatos().GetPorIdRestaurante(idRestauranteRequested);
+                            if (restaurantePlatos != null && restaurantePlatos.Count > 0)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(restaurantePlatos)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "PlatoRestaurante entries not found for the given IdRestaurante" }));
+                            }
+                            break;
+
+                        case "GetPlatoById":
+                            int idPlatoRequested = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            Plato platoObj = new ManagerPlatos().GetPorId(idPlatoRequested);
+                            if (platoObj != null)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(platoObj)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Plato not found" }));
+                            }
+                            break;
 
                         default:
-                            writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Invalid request type" }));
+                            writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Tipo de request inválido" }));
                             break;
                     }
 
