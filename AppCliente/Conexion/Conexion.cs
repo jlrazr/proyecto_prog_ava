@@ -26,9 +26,9 @@ public class Conexion
 
             // Get and process response
             var responseJson = reader.ReadLine();
-            var response = JsonConvert.DeserializeObject<Cliente>(responseJson);
+            var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
 
-            Cliente clienteConectado = response;
+            Cliente clienteConectado = JsonConvert.DeserializeObject<Cliente>(response.Data);
             return clienteConectado;
         }
     }

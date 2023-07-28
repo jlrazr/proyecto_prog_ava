@@ -74,6 +74,7 @@ namespace AppServidor
                         case "GetClienteById":
                             int idCliente = JsonConvert.DeserializeObject<int>(clientRequest.Data);
                             Cliente clientObj = new ManagerClientes().GetClientePorId(idCliente);
+                            clientObj.Id = idCliente;
                             if (clientObj != null)
                             {
                                 var response = new ServerResponse
