@@ -43,8 +43,8 @@
             label1 = new Label();
             dataGridView_platos_elegidos = new DataGridView();
             dataGridView_platos_disponibles = new DataGridView();
-            dataGridView2 = new DataGridView();
-            dataGridView1 = new DataGridView();
+            dataGridView_extras_elegidas = new DataGridView();
+            dataGridView_extras_disponibles = new DataGridView();
             button_hacer_pedido = new Button();
             label_cliente = new Label();
             label2 = new Label();
@@ -52,8 +52,8 @@
             groupBox_login.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_platos_elegidos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_platos_disponibles).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_extras_elegidas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_extras_disponibles).BeginInit();
             SuspendLayout();
             // 
             // button_cliente_login
@@ -87,8 +87,8 @@
             groupBox_login.Controls.Add(label1);
             groupBox_login.Controls.Add(dataGridView_platos_elegidos);
             groupBox_login.Controls.Add(dataGridView_platos_disponibles);
-            groupBox_login.Controls.Add(dataGridView2);
-            groupBox_login.Controls.Add(dataGridView1);
+            groupBox_login.Controls.Add(dataGridView_extras_elegidas);
+            groupBox_login.Controls.Add(dataGridView_extras_disponibles);
             groupBox_login.Controls.Add(button_hacer_pedido);
             groupBox_login.Controls.Add(label_cliente);
             groupBox_login.Controls.Add(label2);
@@ -212,25 +212,25 @@
             dataGridView_platos_disponibles.Size = new Size(575, 249);
             dataGridView_platos_disponibles.TabIndex = 8;
             // 
-            // dataGridView2
+            // dataGridView_extras_elegidas
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(750, 618);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.RowTemplate.Height = 33;
-            dataGridView2.Size = new Size(638, 256);
-            dataGridView2.TabIndex = 7;
+            dataGridView_extras_elegidas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_extras_elegidas.Location = new Point(750, 618);
+            dataGridView_extras_elegidas.Name = "dataGridView_extras_elegidas";
+            dataGridView_extras_elegidas.RowHeadersWidth = 62;
+            dataGridView_extras_elegidas.RowTemplate.Height = 33;
+            dataGridView_extras_elegidas.Size = new Size(638, 256);
+            dataGridView_extras_elegidas.TabIndex = 7;
             // 
-            // dataGridView1
+            // dataGridView_extras_disponibles
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 618);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(575, 256);
-            dataGridView1.TabIndex = 6;
+            dataGridView_extras_disponibles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_extras_disponibles.Location = new Point(6, 618);
+            dataGridView_extras_disponibles.Name = "dataGridView_extras_disponibles";
+            dataGridView_extras_disponibles.RowHeadersWidth = 62;
+            dataGridView_extras_disponibles.RowTemplate.Height = 33;
+            dataGridView_extras_disponibles.Size = new Size(575, 256);
+            dataGridView_extras_disponibles.TabIndex = 6;
             // 
             // button_hacer_pedido
             // 
@@ -282,8 +282,8 @@
             groupBox_login.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_platos_elegidos).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_platos_disponibles).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_extras_elegidas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_extras_disponibles).EndInit();
             ResumeLayout(false);
         }
 
@@ -296,8 +296,8 @@
         private Button button_cliente_logout;
         private Label label_cliente;
         private Button button_hacer_pedido;
-        private DataGridView dataGridView2;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView_extras_elegidas;
+        private DataGridView dataGridView_extras_disponibles;
         private Label label3;
         private ComboBox comboBox_lista_restaurantes;
         private Label label1;

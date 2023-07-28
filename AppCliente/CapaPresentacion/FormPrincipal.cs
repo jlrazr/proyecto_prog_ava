@@ -105,7 +105,7 @@ namespace AppCliente
                     }
 
                     // Actualiza el datagrid con la lista de platos relacionados al restaurante
-                    dataGridView_platos_disponibles.DataSource = platos.Where(x => x != null).ToList(); 
+                    dataGridView_platos_disponibles.DataSource = platos.Where(x => x != null).ToList();
                 }
             }
             else

@@ -125,4 +125,26 @@ public class Conexion
             return null;
         }
     }
+
+    public List<RestaurantePlato> FetchCategoriasByIdPlato(int idPlato)
+    {
+        var request = new ServerRequest { ActionType = "GetCategoriasByIdPlato", Data = JsonConvert.SerializeObject(idPlato) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            return JsonConvert.DeserializeObject<List<RestaurantePlato>>(response.Data);
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return null;
+        }
+    }
 }
