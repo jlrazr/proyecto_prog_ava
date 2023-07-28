@@ -64,21 +64,38 @@ namespace AppServidor
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 using (var writer = new StreamWriter(stream, Encoding.UTF8))
                 {
-                    // Lee los datos serializados enviados desde el cliente
+                    // Read serialized data sent from the client
                     var clientRequestJson = reader.ReadLine();
-                    var clientRequest = JsonConvert.DeserializeObject<ClienteDTORequest>(clientRequestJson);
+                    var clientRequest = JsonConvert.DeserializeObject<ServerRequest>(clientRequestJson);
 
-                    // Procesa el request
-                    Cliente clientObj = new ManagerClientes().GetClientePorId(clientRequest.IdCliente);
-                    var response = new ClienteDTOResponse
+                    // Handle based on ActionType
+                    switch (clientRequest.ActionType)
                     {
-                        Existe = clientObj != null,
-                        Cliente = clientObj
-                    };
+                        case "GetClienteById":
+                            int idCliente = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            Cliente clientObj = new ManagerClientes().GetClientePorId(idCliente);
+                            if (clientObj != null)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(clientObj)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Cliente not found" }));
+                            }
+                            break;
 
-                    // Serializa y envía la respuesta de vuelta al cliente
-                    var responseJson = JsonConvert.SerializeObject(response);
-                    writer.WriteLine(responseJson);
+                        // Add more cases as needed
+
+                        default:
+                            writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Invalid request type" }));
+                            break;
+                    }
+
                     writer.Flush();
                 }
             }
