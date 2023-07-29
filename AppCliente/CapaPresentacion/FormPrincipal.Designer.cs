@@ -107,11 +107,11 @@
             // 
             label_precio_total.AutoSize = true;
             label_precio_total.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label_precio_total.Location = new Point(1013, 23);
+            label_precio_total.Location = new Point(976, 27);
             label_precio_total.Name = "label_precio_total";
-            label_precio_total.Size = new Size(231, 30);
+            label_precio_total.Size = new Size(297, 30);
             label_precio_total.TabIndex = 22;
-            label_precio_total.Text = "Precio del Pedido: ₡0";
+            label_precio_total.Text = "Costo del Pedido: 0 colones";
             // 
             // label8
             // 

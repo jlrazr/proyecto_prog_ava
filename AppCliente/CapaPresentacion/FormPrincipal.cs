@@ -22,6 +22,9 @@ namespace AppCliente
         private List<Plato> platosElegidos = new();
         private List<Extra> extrasElegidas = new();
         private Cliente clienteActivo;
+        private int precioPlatos = 0;
+        private int precioExtras = 0;
+        private int precioTotal = 0;
 
 
         private void button_cliente_login_Click(object sender, EventArgs e)
@@ -129,47 +132,65 @@ namespace AppCliente
                 if (row.DataBoundItem is Plato platoSeleccionado)
                 {
                     platosElegidos.Add(platoSeleccionado);
-
-                    dataGridView_platos_elegidos.DataSource = platosElegidos.Where(x => x != null).ToList();
-
-                    if (platosElegidos.Count > 0)
-                    {
-
-                        HashSet<int> platosUnicos = new HashSet<int>();
-                        List<int> idsCategorías = new List<int>();
-                        List<Extra> extrasDisponibles = new List<Extra>();
-
-                        foreach (Plato plato in platosElegidos)
-                        {
-                            // Usa el HashSet para almacenar sólo ids únicos
-                            if (platosUnicos.Add(plato.IdCategoria))
-                            {
-                                idsCategorías.Add(plato.IdCategoria);
-                            }
-                        }
-
-                        foreach (var id in idsCategorías)
-                        {
-                            List<Extra> extrasDeCategoria = new Conexion().FetchExtrasByIdCategoria(id);
-
-                            foreach (var extra in extrasDeCategoria)
-                            {
-                                extrasDisponibles.Add(extra);
-                            }
-                        }
-
-                        dataGridView_extras_disponibles.DataSource = extrasDisponibles.Where(x => x != null).ToList();
-
-                        button_hacer_pedido.Enabled = true;
-                        var mensaje_platosElegidos = new FormMensaje("El/los platos han sido añadidos al pedido.");
-                        mensaje_platosElegidos.ShowDialog();
-                    } else
-                    {
-                        var mensaje_platosElegidos = new FormMensaje("Debe seleccionar al menos un plato.");
-                        mensaje_platosElegidos.ShowDialog();
-                    }
                 }
             }
+
+            dataGridView_platos_elegidos.DataSource = platosElegidos.Where(x => x != null).ToList();
+
+
+            if (platosElegidos.Count > 0)
+            {
+
+                HashSet<int> platosUnicos = new HashSet<int>();
+                List<int> idsCategorías = new List<int>();
+                List<Extra> extrasDisponibles = new List<Extra>();
+
+                foreach (Plato plato in platosElegidos)
+                {
+                    // Usa el HashSet para almacenar sólo ids únicos
+                    if (platosUnicos.Add(plato.IdCategoria))
+                    {
+                        idsCategorías.Add(plato.IdCategoria);
+                    }
+                }
+
+                foreach (var id in idsCategorías)
+                {
+                    List<Extra> extrasDeCategoria = new Conexion().FetchExtrasByIdCategoria(id);
+
+                    foreach (var extra in extrasDeCategoria)
+                    {
+                        extrasDisponibles.Add(extra);
+                    }
+                }
+
+                dataGridView_extras_disponibles.DataSource = extrasDisponibles.Where(x => x != null).ToList();
+
+                var mensaje_platosElegidos = new FormMensaje("El/los platos han sido añadidos al pedido.");
+                mensaje_platosElegidos.ShowDialog();
+            }
+
+
+
+            precioPlatos = 0;
+
+            foreach (DataGridViewRow fila in dataGridView_platos_elegidos.Rows)
+            {
+                if (fila.DataBoundItem is Plato platoEnPedido)
+                {
+
+                    precioPlatos += platoEnPedido.Precio;
+                }
+            }
+
+            precioTotal = 0;
+            precioTotal = precioPlatos + precioExtras;
+
+
+
+            label_precio_total.Text = "Costo del Pedido: " + precioTotal.ToString() + " colones";
+
+
         }
     }
 }
