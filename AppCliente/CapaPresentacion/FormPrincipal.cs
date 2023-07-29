@@ -192,5 +192,41 @@ namespace AppCliente
 
 
         }
+
+        private void button_anadir_extras_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView_extras_disponibles.SelectedRows)
+            {
+                if (row.DataBoundItem is Extra extraSeleccionado)
+                {
+                    extrasElegidas.Add(extraSeleccionado);
+                }
+            }
+
+            dataGridView_extras_elegidas.DataSource = extrasElegidas.Where(x => x != null).ToList();
+
+            if (platosElegidos.Count > 0)
+            {
+
+                var mensaje_extrasElegidas = new FormMensaje("La(s) extras han sido añadidas al pedido.");
+                mensaje_extrasElegidas.ShowDialog();
+            }
+
+            precioExtras = 0;
+
+            foreach (DataGridViewRow fila in dataGridView_extras_elegidas.Rows)
+            {
+                if (fila.DataBoundItem is Extra extraEnPedido)
+                {
+
+                    precioExtras += extraEnPedido.Precio;
+                }
+            }
+
+            precioTotal = 0;
+            precioTotal = precioPlatos + precioExtras;
+
+            label_precio_total.Text = "Costo del Pedido: " + precioTotal.ToString() + " colones";
+        }
     }
 }

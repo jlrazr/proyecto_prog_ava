@@ -139,6 +139,7 @@
             button_anadir_extras.TabIndex = 19;
             button_anadir_extras.Text = "Elegir Extras";
             button_anadir_extras.UseVisualStyleBackColor = true;
+            button_anadir_extras.Click += button_anadir_extras_Click;
             // 
             // button_anadir_platos
             // 
