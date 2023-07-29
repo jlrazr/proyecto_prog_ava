@@ -102,12 +102,24 @@ namespace AppCliente
             label_cliente.Text = "Cliente:";
             label_precio_total.Text = "Costo del Pedido: 0 colones";
             button_hacer_pedido.Enabled = false;
-            comboBox_lista_restaurantes.DataSource = null;
             comboBox_lista_restaurantes.Enabled = false;
+            comboBox_lista_restaurantes.DataSource = new List<Restaurante>();
         }
 
         private void comboBox_lista_restaurantes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dataGridView_platos_disponibles.DataSource = new List<Plato>();
+            dataGridView_extras_disponibles.DataSource = new List<Extra>();
+            dataGridView_platos_elegidos.DataSource = new List<Plato>();
+            dataGridView_extras_elegidas.DataSource = new List<Extra>();
+            label_precio_total.Text = "Costo del Pedido: 0 colones";
+            platosElegidos = new List<Plato>();
+            extrasElegidas = new List<Extra>();
+            precioPlatos = 0;
+            precioExtras = 0;
+            precioTotal = 0;
+
+
             if (comboBox_lista_restaurantes.SelectedItem != null && comboBox_lista_restaurantes.SelectedItem is Restaurante restauranteSeleccionado)
             {
                 int idRestSeleccionado = restauranteSeleccionado.Id;
