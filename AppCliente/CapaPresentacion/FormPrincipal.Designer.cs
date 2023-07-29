@@ -31,9 +31,10 @@
             button_cliente_login = new Button();
             textBox_cliente_id_login = new TextBox();
             groupBox_login = new GroupBox();
+            label_precio_total = new Label();
             label8 = new Label();
             label7 = new Label();
-            button2 = new Button();
+            button_anadir_extras = new Button();
             button_anadir_platos = new Button();
             label6 = new Label();
             label5 = new Label();
@@ -75,9 +76,10 @@
             // 
             // groupBox_login
             // 
+            groupBox_login.Controls.Add(label_precio_total);
             groupBox_login.Controls.Add(label8);
             groupBox_login.Controls.Add(label7);
-            groupBox_login.Controls.Add(button2);
+            groupBox_login.Controls.Add(button_anadir_extras);
             groupBox_login.Controls.Add(button_anadir_platos);
             groupBox_login.Controls.Add(label6);
             groupBox_login.Controls.Add(label5);
@@ -101,6 +103,16 @@
             groupBox_login.TabIndex = 3;
             groupBox_login.TabStop = false;
             // 
+            // label_precio_total
+            // 
+            label_precio_total.AutoSize = true;
+            label_precio_total.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            label_precio_total.Location = new Point(1013, 23);
+            label_precio_total.Name = "label_precio_total";
+            label_precio_total.Size = new Size(231, 30);
+            label_precio_total.TabIndex = 22;
+            label_precio_total.Text = "Precio del Pedido: ₡0";
+            // 
             // label8
             // 
             label8.AutoSize = true;
@@ -119,14 +131,14 @@
             label7.TabIndex = 20;
             label7.Text = "->";
             // 
-            // button2
+            // button_anadir_extras
             // 
-            button2.Location = new Point(587, 618);
-            button2.Name = "button2";
-            button2.Size = new Size(126, 249);
-            button2.TabIndex = 19;
-            button2.Text = "Elegir Extras";
-            button2.UseVisualStyleBackColor = true;
+            button_anadir_extras.Location = new Point(587, 618);
+            button_anadir_extras.Name = "button_anadir_extras";
+            button_anadir_extras.Size = new Size(126, 249);
+            button_anadir_extras.TabIndex = 19;
+            button_anadir_extras.Text = "Elegir Extras";
+            button_anadir_extras.UseVisualStyleBackColor = true;
             // 
             // button_anadir_platos
             // 
@@ -235,9 +247,9 @@
             // button_hacer_pedido
             // 
             button_hacer_pedido.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            button_hacer_pedido.Location = new Point(1167, 27);
+            button_hacer_pedido.Location = new Point(1013, 73);
             button_hacer_pedido.Name = "button_hacer_pedido";
-            button_hacer_pedido.Size = new Size(221, 158);
+            button_hacer_pedido.Size = new Size(283, 112);
             button_hacer_pedido.TabIndex = 5;
             button_hacer_pedido.Text = "Hacer Pedido";
             button_hacer_pedido.UseVisualStyleBackColor = true;
@@ -307,8 +319,9 @@
         private Label label5;
         private Label label6;
         private Button button_anadir_platos;
-        private Button button2;
+        private Button button_anadir_extras;
         private Label label8;
         private Label label7;
+        private Label label_precio_total;
     }
 }

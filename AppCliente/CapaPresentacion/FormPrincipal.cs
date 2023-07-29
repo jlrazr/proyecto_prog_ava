@@ -12,6 +12,9 @@ namespace AppCliente
         {
             InitializeComponent();
             button_cliente_logout.Enabled = false;
+            button_anadir_platos.Enabled = false;
+            button_anadir_extras.Enabled = false;
+            button_hacer_pedido.Enabled = false;
         }
 
         Boolean logueado = false;
@@ -45,20 +48,22 @@ namespace AppCliente
 
                     if (response != null)
                     {
-                        label_cliente.Text = "Cliente: " + clienteConectado.Nombre + " " + clienteConectado.PrimApellido + "\nID: " + clienteConectado.Id;
+                        label_cliente.Text = "Cliente: " + clienteConectado.Nombre + " " + clienteConectado.PrimApellido + " " + clienteConectado.SegApellido;
                         clienteActivo = clienteConectado;
+
+                        logueado = !logueado;
+                        button_cliente_login.Enabled = false;
+                        button_cliente_logout.Enabled = false;
+                        textBox_cliente_id_login.Enabled = false;
+                        textBox_cliente_id_login.Text = "";
+                        button_cliente_logout.Enabled = true;
+                        button_anadir_platos.Enabled = true;
+                        button_anadir_extras.Enabled = true;
                     }
                     else
                     {
                         label_cliente.Text = "Cliente: No existe un cliente con el ID ingresado";
                     }
-
-                    logueado = !logueado;
-                    button_cliente_login.Enabled = false;
-                    button_cliente_logout.Enabled = false;
-                    textBox_cliente_id_login.Enabled = false;
-                    textBox_cliente_id_login.Text = "";
-                    button_cliente_logout.Enabled = true;
                 }
 
                 restaurantes = new Conexion().FetchAllRestaurantes();
@@ -78,6 +83,8 @@ namespace AppCliente
             button_cliente_login.Enabled = true;
             textBox_cliente_id_login.Enabled = true;
             button_cliente_logout.Enabled = false;
+            button_anadir_platos.Enabled = false;
+            button_anadir_extras.Enabled = false;
         }
 
         private void comboBox_lista_restaurantes_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,38 +131,45 @@ namespace AppCliente
                     platosElegidos.Add(platoSeleccionado);
 
                     dataGridView_platos_elegidos.DataSource = platosElegidos.Where(x => x != null).ToList();
+
+                    if (platosElegidos.Count > 0)
+                    {
+
+                        HashSet<int> platosUnicos = new HashSet<int>();
+                        List<int> idsCategorías = new List<int>();
+                        List<Extra> extrasDisponibles = new List<Extra>();
+
+                        foreach (Plato plato in platosElegidos)
+                        {
+                            // Usa el HashSet para almacenar sólo ids únicos
+                            if (platosUnicos.Add(plato.IdCategoria))
+                            {
+                                idsCategorías.Add(plato.IdCategoria);
+                            }
+                        }
+
+                        foreach (var id in idsCategorías)
+                        {
+                            List<Extra> extrasDeCategoria = new Conexion().FetchExtrasByIdCategoria(id);
+
+                            foreach (var extra in extrasDeCategoria)
+                            {
+                                extrasDisponibles.Add(extra);
+                            }
+                        }
+
+                        dataGridView_extras_disponibles.DataSource = extrasDisponibles.Where(x => x != null).ToList();
+
+                        button_hacer_pedido.Enabled = true;
+                        var mensaje_platosElegidos = new FormMensaje("El/los platos han sido añadidos al pedido.");
+                        mensaje_platosElegidos.ShowDialog();
+                    } else
+                    {
+                        var mensaje_platosElegidos = new FormMensaje("Debe seleccionar al menos un plato.");
+                        mensaje_platosElegidos.ShowDialog();
+                    }
                 }
             }
-
-  
-            HashSet<int> platosUnicos = new HashSet<int>(); 
-            List<int> idsCategorías = new List<int>();
-            List<Extra> extrasDisponibles = new List<Extra>();
-
-            foreach (Plato plato in platosElegidos)
-            {
-                // Usa el HashSet para almacenar sólo ids únicos
-                if (platosUnicos.Add(plato.IdCategoria))
-                {
-                    idsCategorías.Add(plato.IdCategoria);
-                }
-            }
-
-            foreach (var id in idsCategorías)
-            {
-                List<Extra> extrasDeCategoria = new Conexion().FetchExtrasByIdCategoria(id);
-
-                foreach (var extra in extrasDeCategoria)
-                {
-                    extrasDisponibles.Add(extra);
-                }
-            }
-
-            dataGridView_extras_disponibles.DataSource = extrasDisponibles.Where(x => x != null).ToList();
-
-
-            var mensaje_platosElegidos = new FormMensaje("El/los platos han sido añadidos al pedido.");
-            mensaje_platosElegidos.ShowDialog();
         }
     }
 }
