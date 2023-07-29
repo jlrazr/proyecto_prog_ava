@@ -15,6 +15,7 @@ namespace AppCliente
             button_anadir_platos.Enabled = false;
             button_anadir_extras.Enabled = false;
             button_hacer_pedido.Enabled = false;
+            comboBox_lista_restaurantes.Enabled = false;
         }
 
         Boolean logueado = false;
@@ -62,6 +63,7 @@ namespace AppCliente
                         button_cliente_logout.Enabled = true;
                         button_anadir_platos.Enabled = true;
                         button_anadir_extras.Enabled = true;
+                        comboBox_lista_restaurantes.Enabled = true;
                     }
                     else
                     {
@@ -82,12 +84,26 @@ namespace AppCliente
 
         private void button_cliente_logout_Click(object sender, EventArgs e)
         {
+            platosElegidos = new List<Plato>();
+            extrasElegidas = new List<Extra>();
+            precioPlatos = 0;
+            precioExtras = 0;
+            precioTotal = 0;
             logueado = !logueado;
             button_cliente_login.Enabled = true;
             textBox_cliente_id_login.Enabled = true;
             button_cliente_logout.Enabled = false;
             button_anadir_platos.Enabled = false;
             button_anadir_extras.Enabled = false;
+            dataGridView_platos_disponibles.DataSource = null;
+            dataGridView_extras_disponibles.DataSource= null;
+            dataGridView_platos_elegidos.DataSource = null;
+            dataGridView_extras_elegidas.DataSource = null;
+            label_cliente.Text = "Cliente:";
+            label_precio_total.Text = "Costo del Pedido: 0 colones";
+            button_hacer_pedido.Enabled = false;
+            comboBox_lista_restaurantes.DataSource = null;
+            comboBox_lista_restaurantes.Enabled = false;
         }
 
         private void comboBox_lista_restaurantes_SelectedIndexChanged(object sender, EventArgs e)
@@ -137,7 +153,6 @@ namespace AppCliente
 
             dataGridView_platos_elegidos.DataSource = platosElegidos.Where(x => x != null).ToList();
 
-
             if (platosElegidos.Count > 0)
             {
 
@@ -165,12 +180,11 @@ namespace AppCliente
                 }
 
                 dataGridView_extras_disponibles.DataSource = extrasDisponibles.Where(x => x != null).ToList();
+                button_hacer_pedido.Enabled = true;
 
                 var mensaje_platosElegidos = new FormMensaje("El/los platos han sido añadidos al pedido.");
                 mensaje_platosElegidos.ShowDialog();
             }
-
-
 
             precioPlatos = 0;
 
@@ -186,11 +200,7 @@ namespace AppCliente
             precioTotal = 0;
             precioTotal = precioPlatos + precioExtras;
 
-
-
             label_precio_total.Text = "Costo del Pedido: " + precioTotal.ToString() + " colones";
-
-
         }
 
         private void button_anadir_extras_Click(object sender, EventArgs e)
