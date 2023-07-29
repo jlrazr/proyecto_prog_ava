@@ -127,6 +127,33 @@ namespace AppCliente
                 }
             }
 
+  
+            HashSet<int> platosUnicos = new HashSet<int>(); 
+            List<int> idsCategorías = new List<int>();
+            List<Extra> extrasDisponibles = new List<Extra>();
+
+            foreach (Plato plato in platosElegidos)
+            {
+                // Usa el HashSet para almacenar sólo ids únicos
+                if (platosUnicos.Add(plato.IdCategoria))
+                {
+                    idsCategorías.Add(plato.IdCategoria);
+                }
+            }
+
+            foreach (var id in idsCategorías)
+            {
+                List<Extra> extrasDeCategoria = new Conexion().FetchExtrasByIdCategoria(id);
+
+                foreach (var extra in extrasDeCategoria)
+                {
+                    extrasDisponibles.Add(extra);
+                }
+            }
+
+            dataGridView_extras_disponibles.DataSource = extrasDisponibles.Where(x => x != null).ToList();
+
+
             var mensaje_platosElegidos = new FormMensaje("El/los platos han sido añadidos al pedido.");
             mensaje_platosElegidos.ShowDialog();
         }

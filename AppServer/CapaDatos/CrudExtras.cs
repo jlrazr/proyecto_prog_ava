@@ -152,5 +152,55 @@ namespace AppServidor.CapaDatos
                 }
             }
         }
+
+        public List<Extra> ObtenerExtraPorIdCategoria(int idCategoria)
+        {
+            List<Extra> resultados = new List<Extra>();
+            SqlConnection conexion;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            string sentenciaSQL = "SELECT IdExtra, Descripcion, IdCategoria, Estado, Precio FROM dbo.Extra WHERE IdCategoria = @IdCategoria";
+
+            using (conexion = new(cadenaConexion))
+            {
+                try
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sentenciaSQL;
+                    cmd.Connection = conexion;
+                    cmd.Connection.Open();
+                    cmd.Parameters.AddWithValue("@IdCategoria", idCategoria);
+
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string Descripcion = reader["Descripcion"].ToString();
+                        int IdCategoria = Convert.ToInt32(reader["IdCategoria"]);
+                        bool Estado = Convert.ToBoolean(reader["Estado"]);
+                        int Precio = Convert.ToInt32(reader["Precio"]);
+                        int IdExtra = Convert.ToInt32(reader["IdExtra"]);
+
+                        Extra extra = new Extra(Descripcion, IdCategoria, Estado, Precio);
+                        extra.Id = IdExtra;
+
+
+                        resultados.Add(extra);
+                    }
+
+                    return resultados;
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                    return null;
+                }
+                finally
+                {
+                    cmd.Connection.Close();
+                }
+            }
+        }
     }
 }

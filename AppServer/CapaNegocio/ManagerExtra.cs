@@ -55,5 +55,18 @@ namespace AppServidor.CapaNegocio
                 return null;
             }
         }
+
+        public List<Extra> GetPorIdCategoria(int idCategoria)
+        {
+            try
+            {
+                return crudExtra.ObtenerExtraPorIdCategoria(idCategoria);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

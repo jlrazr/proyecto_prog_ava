@@ -147,4 +147,26 @@ public class Conexion
             return null;
         }
     }
+
+    public List<Extra> FetchExtrasByIdCategoria(int idCategoria)
+    {
+        var request = new ServerRequest { ActionType = "GetExtrasByIdCategoria", Data = JsonConvert.SerializeObject(idCategoria) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            return JsonConvert.DeserializeObject<List<Extra>>(response.Data);
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return null;
+        }
+    }
 }

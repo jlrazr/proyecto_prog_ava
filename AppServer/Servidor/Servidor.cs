@@ -151,6 +151,24 @@ namespace AppServidor
                             }
                             break;
 
+                        case "GetExtrasByIdCategoria":
+                            int idCategoriaRequested = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            List<Extra> extras = new ManagerExtra().GetPorIdCategoria(idCategoriaRequested);
+                            if (extras != null && extras.Count > 0)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(extras)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Extras not found for the given IdCategoria" }));
+                            }
+                            break;
+
                         default:
                             writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Tipo de request inválido" }));
                             break;
