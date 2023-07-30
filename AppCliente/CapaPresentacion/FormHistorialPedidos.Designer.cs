@@ -41,7 +41,7 @@
             label6 = new Label();
             groupBox1 = new GroupBox();
             label_historial_nombre_cliente = new Label();
-            label7 = new Label();
+            label_historial_costoPedido = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView_historial_platos_pedido).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_historial_extras_pedido).BeginInit();
             SuspendLayout();
@@ -162,22 +162,22 @@
             label_historial_nombre_cliente.TabIndex = 12;
             label_historial_nombre_cliente.Text = "Cliente: ";
             // 
-            // label7
+            // label_historial_costoPedido
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(12, 757);
-            label7.Name = "label7";
-            label7.Size = new Size(313, 32);
-            label7.TabIndex = 13;
-            label7.Text = "Costo del Pedido: 0 Colones";
+            label_historial_costoPedido.AutoSize = true;
+            label_historial_costoPedido.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label_historial_costoPedido.Location = new Point(12, 757);
+            label_historial_costoPedido.Name = "label_historial_costoPedido";
+            label_historial_costoPedido.Size = new Size(313, 32);
+            label_historial_costoPedido.TabIndex = 13;
+            label_historial_costoPedido.Text = "Costo del Pedido: 0 Colones";
             // 
             // FormHistorialPedidos
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(878, 904);
-            Controls.Add(label7);
+            Controls.Add(label_historial_costoPedido);
             Controls.Add(label_historial_nombre_cliente);
             Controls.Add(groupBox1);
             Controls.Add(label6);
@@ -216,5 +216,6 @@
         private GroupBox groupBox1;
         private Label label_historial_nombre_cliente;
         private Label label7;
+        private Label label_historial_costoPedido;
     }
 }

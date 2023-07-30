@@ -18,10 +18,10 @@ namespace AppCliente.CapaPresentacion
         List<Plato> platos = new();
         List<Extra> extras = new();
         List<Pedido> pedidos = new();
-        List<PedidoExtra> pedidosExtras = new();
-        int costoExtras = 0;
-        int costoPedidos = 0;
-        int costoTotal = 0;
+        public List<PedidoExtra> pedidosExtras;
+        int costoExtras;
+        int costoPedidos;
+        int costoTotal;
 
         public FormHistorialPedidos(Cliente clienteActivo)
         {
@@ -38,7 +38,14 @@ namespace AppCliente.CapaPresentacion
         {
             try
             {
-                platos = new List<Plato>();
+                platos = new();
+                extras = new();
+                pedidos = new();
+                pedidosExtras = new();
+                costoExtras = 0;
+                costoPedidos = 0;
+                costoTotal = 0;
+
                 int idIngresado = int.Parse(textBox_historial_id_pedido.Text);
 
                 if (idIngresado == null)
@@ -57,7 +64,7 @@ namespace AppCliente.CapaPresentacion
                     Conexion conexionPedidoExtra = new Conexion();
                     List<PedidoExtra> _pedidosExtra = conexionPedidoExtra.FetchPedidoExtrasPorIdPedido(pedido.IdPedido);
 
-                    if (_pedidosExtra.Count > 0)
+                    if (_pedidosExtra != null && _pedidosExtra.Count > 0)
                     {
                         foreach (var pedidoExtra in _pedidosExtra)
                         {
@@ -73,6 +80,20 @@ namespace AppCliente.CapaPresentacion
 
                     dataGridView_historial_platos_pedido.DataSource = platos.Where(x => x != null).ToList();
                     dataGridView_historial_extras_pedido.DataSource = extras.Where(x => x != null).ToList();
+
+                    foreach (var plato in platos)
+                    {
+                        costoPedidos += plato.Precio;
+                    }
+
+                    foreach (var extra in extras)
+                    {
+                        costoExtras += extra.Precio;
+                    }
+
+                    costoTotal = costoExtras + costoPedidos;
+
+                    label_historial_costoPedido.Text = "Costo del Pedido: " + costoTotal + " Colones";
                 }
             }
             catch (Exception ex)
