@@ -183,7 +183,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(979, 16);
+            label1.Location = new Point(745, 16);
             label1.Name = "label1";
             label1.Size = new Size(128, 38);
             label1.TabIndex = 15;
@@ -191,7 +191,7 @@
             // 
             // button_servidor_iniciar
             // 
-            button_servidor_iniciar.Location = new Point(863, 71);
+            button_servidor_iniciar.Location = new Point(629, 71);
             button_servidor_iniciar.Name = "button_servidor_iniciar";
             button_servidor_iniciar.Size = new Size(179, 50);
             button_servidor_iniciar.TabIndex = 16;
@@ -201,7 +201,7 @@
             // 
             // button_servidor_detener
             // 
-            button_servidor_detener.Location = new Point(1048, 71);
+            button_servidor_detener.Location = new Point(814, 71);
             button_servidor_detener.Name = "button_servidor_detener";
             button_servidor_detener.Size = new Size(179, 50);
             button_servidor_detener.TabIndex = 17;
@@ -212,7 +212,7 @@
             // label_estado_servidor
             // 
             label_estado_servidor.AutoSize = true;
-            label_estado_servidor.Location = new Point(932, 131);
+            label_estado_servidor.Location = new Point(698, 131);
             label_estado_servidor.Name = "label_estado_servidor";
             label_estado_servidor.Size = new Size(154, 25);
             label_estado_servidor.TabIndex = 18;
@@ -222,7 +222,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(863, 131);
+            label2.Location = new Point(629, 131);
             label2.Name = "label2";
             label2.Size = new Size(74, 25);
             label2.TabIndex = 19;
@@ -231,7 +231,7 @@
             // textBox_servidor_clientes_conect
             // 
             textBox_servidor_clientes_conect.AcceptsReturn = true;
-            textBox_servidor_clientes_conect.Location = new Point(631, 210);
+            textBox_servidor_clientes_conect.Location = new Point(586, 210);
             textBox_servidor_clientes_conect.Multiline = true;
             textBox_servidor_clientes_conect.Name = "textBox_servidor_clientes_conect";
             textBox_servidor_clientes_conect.ReadOnly = true;
@@ -242,7 +242,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1578, 904);
+            ClientSize = new Size(1078, 904);
             Controls.Add(textBox_servidor_clientes_conect);
             Controls.Add(label2);
             Controls.Add(label_estado_servidor);
