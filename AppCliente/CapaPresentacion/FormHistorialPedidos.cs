@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Libreria.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace AppCliente.CapaPresentacion
 {
     public partial class FormHistorialPedidos : Form
     {
-        public FormHistorialPedidos()
+        public FormHistorialPedidos(Cliente clienteActivo)
         {
             InitializeComponent();
         }

@@ -17,6 +17,7 @@ namespace AppCliente
             button_anadir_extras.Enabled = false;
             button_hacer_pedido.Enabled = false;
             comboBox_lista_restaurantes.Enabled = false;
+            button_consul_pedidos.Enabled = false;
         }
 
         Boolean logueado = false;
@@ -66,6 +67,7 @@ namespace AppCliente
                         button_anadir_platos.Enabled = true;
                         button_anadir_extras.Enabled = true;
                         comboBox_lista_restaurantes.Enabled = true;
+                        button_consul_pedidos.Enabled = true;
                     }
                     else
                     {
@@ -107,6 +109,7 @@ namespace AppCliente
             comboBox_lista_restaurantes.Enabled = false;
             comboBox_lista_restaurantes.DataSource = new List<Restaurante>();
             pedidosRealizados = new List<Pedido>();
+            button_consul_pedidos.Enabled = false;
         }
 
         private void comboBox_lista_restaurantes_SelectedIndexChanged(object sender, EventArgs e)
@@ -327,7 +330,7 @@ namespace AppCliente
 
         private void button_consul_pedidos_Click(object sender, EventArgs e)
         {
-            var historialPedidos = new FormHistorialPedidos();
+            var historialPedidos = new FormHistorialPedidos(clienteActivo);
             historialPedidos.ShowDialog();
         }
     }
