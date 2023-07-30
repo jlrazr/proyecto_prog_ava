@@ -37,11 +37,11 @@
             label4 = new Label();
             button_historial_consultar_porId = new Button();
             comboBox_historial_lista_pedidos = new ComboBox();
-            label5 = new Label();
             label6 = new Label();
             groupBox1 = new GroupBox();
             label_historial_nombre_cliente = new Label();
             label_historial_costoPedido = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView_historial_platos_pedido).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_historial_extras_pedido).BeginInit();
             SuspendLayout();
@@ -57,7 +57,7 @@
             // 
             // textBox_historial_id_pedido
             // 
-            textBox_historial_id_pedido.Location = new Point(57, 75);
+            textBox_historial_id_pedido.Location = new Point(708, 83);
             textBox_historial_id_pedido.Name = "textBox_historial_id_pedido";
             textBox_historial_id_pedido.Size = new Size(158, 31);
             textBox_historial_id_pedido.TabIndex = 1;
@@ -65,7 +65,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 75);
+            label2.Location = new Point(661, 86);
             label2.Name = "label2";
             label2.Size = new Size(39, 25);
             label2.TabIndex = 2;
@@ -96,9 +96,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(12, 176);
             label3.Name = "label3";
-            label3.Size = new Size(149, 25);
+            label3.Size = new Size(256, 25);
             label3.TabIndex = 5;
-            label3.Text = "Platos del Pedido";
+            label3.Text = "Platos del Pedido seleccionado";
             // 
             // label4
             // 
@@ -111,7 +111,7 @@
             // 
             // button_historial_consultar_porId
             // 
-            button_historial_consultar_porId.Location = new Point(12, 112);
+            button_historial_consultar_porId.Location = new Point(663, 120);
             button_historial_consultar_porId.Name = "button_historial_consultar_porId";
             button_historial_consultar_porId.Size = new Size(203, 34);
             button_historial_consultar_porId.TabIndex = 7;
@@ -122,24 +122,16 @@
             // comboBox_historial_lista_pedidos
             // 
             comboBox_historial_lista_pedidos.FormattingEnabled = true;
-            comboBox_historial_lista_pedidos.Location = new Point(475, 103);
+            comboBox_historial_lista_pedidos.Location = new Point(12, 111);
             comboBox_historial_lista_pedidos.Name = "comboBox_historial_lista_pedidos";
-            comboBox_historial_lista_pedidos.Size = new Size(373, 33);
+            comboBox_historial_lista_pedidos.Size = new Size(495, 33);
             comboBox_historial_lista_pedidos.TabIndex = 8;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(475, 9);
-            label5.Name = "label5";
-            label5.Size = new Size(156, 25);
-            label5.TabIndex = 9;
-            label5.Text = "Todos los Pedidos";
+            comboBox_historial_lista_pedidos.SelectedIndexChanged += comboBox_historial_lista_pedidos_SelectedIndexChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(475, 75);
+            label6.Location = new Point(12, 83);
             label6.Name = "label6";
             label6.Size = new Size(373, 25);
             label6.TabIndex = 10;
@@ -147,7 +139,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Location = new Point(350, 12);
+            groupBox1.Location = new Point(577, 15);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(10, 167);
             groupBox1.TabIndex = 11;
@@ -172,16 +164,25 @@
             label_historial_costoPedido.TabIndex = 13;
             label_historial_costoPedido.Text = "Costo del Pedido: 0 Colones";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(631, 45);
+            label5.Name = "label5";
+            label5.Size = new Size(235, 25);
+            label5.TabIndex = 14;
+            label5.Text = "Ingrese un ID para consultar";
+            // 
             // FormHistorialPedidos
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(878, 904);
+            Controls.Add(label5);
             Controls.Add(label_historial_costoPedido);
             Controls.Add(label_historial_nombre_cliente);
             Controls.Add(groupBox1);
             Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(comboBox_historial_lista_pedidos);
             Controls.Add(button_historial_consultar_porId);
             Controls.Add(label4);

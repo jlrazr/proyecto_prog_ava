@@ -98,6 +98,13 @@ namespace AppServidor
                             writer.WriteLine(JsonConvert.SerializeObject(respuesta));
                             break;
 
+                        case "GetTodosPedidos":
+                            var listaPedidos = new ManagerPedido().GetTodos();
+                            var pedidosJson = JsonConvert.SerializeObject(listaPedidos);
+                            var respuestaPedidos = new ServerResponse { Success = true, Data = pedidosJson };
+                            writer.WriteLine(JsonConvert.SerializeObject(respuestaPedidos));
+                            break;
+
                         case "GetRestauranteById":
                             int idRestaurante = JsonConvert.DeserializeObject<int>(clientRequest.Data);
                             Restaurante restauranteObj = new ManagerRestaurantes().GetPorId(idRestaurante);

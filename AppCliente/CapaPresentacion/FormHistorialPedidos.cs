@@ -27,11 +27,16 @@ namespace AppCliente.CapaPresentacion
         {
             InitializeComponent();
             this.clienteActivo = clienteActivo;
+            comboBox_historial_lista_pedidos.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void FormHistorialPedidos_Shown(object sender, EventArgs e)
         {
             label_historial_nombre_cliente.Text = clienteActivo.Nombre + " " + clienteActivo.PrimApellido + " " + clienteActivo.SegApellido;
+
+            Conexion conexionPedido = new Conexion();
+            List<Pedido> pedidos = conexionPedido.FetchTodosPedidos();
+            comboBox_historial_lista_pedidos.DataSource = pedidos;
         }
 
         private void button_historial_consultar_porId_Click(object sender, EventArgs e)
@@ -94,6 +99,79 @@ namespace AppCliente.CapaPresentacion
                     costoTotal = costoExtras + costoPedidos;
 
                     label_historial_costoPedido.Text = "Costo del Pedido: " + costoTotal + " Colones";
+                }
+            }
+            catch (Exception ex)
+            {
+                var mensaje_errorReg = new FormMensaje("Ha ocurrido un error: " + ex.Message);
+                mensaje_errorReg.ShowDialog();
+            }
+        }
+
+        private void comboBox_historial_lista_pedidos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comboBox_historial_lista_pedidos.SelectedItem != null && comboBox_historial_lista_pedidos.SelectedItem is Pedido pedidoSeleccionado)
+                {
+                    int idIngresado = pedidoSeleccionado.IdPedido;
+
+                    platos = new();
+                    extras = new();
+                    pedidos = new();
+                    pedidosExtras = new();
+                    costoExtras = 0;
+                    costoPedidos = 0;
+                    costoTotal = 0;
+
+
+                    if (idIngresado == null)
+                    {
+                        var mensaje_errorReg = new FormMensaje("Ha ocurrido un error. Verifique los datos y vuelva a intentarlo");
+                        mensaje_errorReg.ShowDialog();
+                    }
+                    else
+                    {
+                        Conexion conexionPedido = new Conexion();
+                        Pedido pedido = conexionPedido.FetchPedidoById(idIngresado);
+
+                        Conexion conexionPlato = new Conexion();
+                        Plato platoPedido = conexionPlato.FetchPlatoById(pedido.IdPlato);
+
+                        Conexion conexionPedidoExtra = new Conexion();
+                        List<PedidoExtra> _pedidosExtra = conexionPedidoExtra.FetchPedidoExtrasPorIdPedido(pedido.IdPedido);
+
+                        if (_pedidosExtra != null && _pedidosExtra.Count > 0)
+                        {
+                            foreach (var pedidoExtra in _pedidosExtra)
+                            {
+                                Conexion conexionExtra = new Conexion();
+                                Extra extra = conexionExtra.FetchExtraPorId(pedidoExtra.IdExtra);
+                                extras.Add(extra);
+                            }
+                        }
+
+                        pedidos.Add(pedido);
+                        pedidosExtras = _pedidosExtra;
+                        platos.Add(platoPedido);
+
+                        dataGridView_historial_platos_pedido.DataSource = platos.Where(x => x != null).ToList();
+                        dataGridView_historial_extras_pedido.DataSource = extras.Where(x => x != null).ToList();
+
+                        foreach (var plato in platos)
+                        {
+                            costoPedidos += plato.Precio;
+                        }
+
+                        foreach (var extra in extras)
+                        {
+                            costoExtras += extra.Precio;
+                        }
+
+                        costoTotal = costoExtras + costoPedidos;
+
+                        label_historial_costoPedido.Text = "Costo del Pedido: " + costoTotal + " Colones";
+                    }
                 }
             }
             catch (Exception ex)

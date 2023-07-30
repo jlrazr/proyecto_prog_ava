@@ -20,6 +20,55 @@ namespace AppServidor.CapaDatos
             cadenaConexion = ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString;
         }
 
+        public List<Pedido> ObtenerTodosPedidos()
+        {
+            List<Pedido> pedidos = new List<Pedido>();
+
+            SqlConnection conexion;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            string sentenciaSQL = "SELECT IdPedido, IdCliente, IdPlato, FechaPedido FROM dbo.Pedido";
+
+            using (conexion = new(cadenaConexion))
+            {
+                try
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sentenciaSQL;
+                    cmd.Connection = conexion;
+                    cmd.Connection.Open();
+
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int IdPedido = Convert.ToInt32(reader["IdPedido"]);
+                        int IdCliente = Convert.ToInt32(reader["IdCliente"]);
+                        int IdPlato = Convert.ToInt32(reader["IdPlato"]);
+                        DateTime FechaPedido = Convert.ToDateTime(reader["FechaPedido"]);
+
+                        Pedido pedido = new Pedido(IdCliente, IdPlato);
+                        pedido.IdPedido = IdPedido;
+                        pedido.FechaPedido = FechaPedido;
+
+                        pedidos.Add(pedido);
+                    }
+
+                    return pedidos;
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                    return pedidos;
+                }
+                finally
+                {
+                    cmd.Connection.Close();
+                }
+            }
+        }
+
         public bool CrearPedido(Pedido pedido)
         {
             _dbSemaforo.Wait();

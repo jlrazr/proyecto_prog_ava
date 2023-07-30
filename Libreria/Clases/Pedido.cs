@@ -19,5 +19,10 @@ namespace Libreria.Clases
             IdPlato = idPlato;
             FechaPedido = DateTime.Now;
         }
+
+        public override string ToString()
+        {
+            return $"ID: {IdPedido} | Fecha: {FechaPedido}";
+        }
     }
 }

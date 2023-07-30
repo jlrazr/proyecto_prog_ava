@@ -58,5 +58,10 @@ namespace AppServidor.CapaNegocio
                 return null;
             }
         }
+
+        public List<Pedido> GetTodos()
+        {
+            return crudPedidos.ObtenerTodosPedidos();
+        }
     }
 }

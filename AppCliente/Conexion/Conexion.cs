@@ -60,6 +60,33 @@ public class Conexion
         }
     }
 
+    public List<Pedido> FetchTodosPedidos()
+    {
+        var request = new ServerRequest { ActionType = "GetTodosPedidos" };
+        using (client)
+        using (var stream = client.GetStream())
+        using (var writer = new StreamWriter(stream, Encoding.UTF8))
+        using (var reader = new StreamReader(stream, Encoding.UTF8))
+        {
+
+            writer.WriteLine(JsonConvert.SerializeObject(request));
+            writer.Flush();
+
+            var responseJson = reader.ReadLine();
+            var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+            if (response.Success)
+            {
+                return JsonConvert.DeserializeObject<List<Pedido>>(response.Data);
+            }
+            else
+            {
+                // Handle error
+                Console.WriteLine($"Error: {response.Message}");
+                return new List<Pedido>();
+            }
+        }
+    }
+
     public Restaurante FetchRestauranteById(int idRestaurante)
     {
         var request = new ServerRequest { ActionType = "GetRestauranteById", Data = JsonConvert.SerializeObject(idRestaurante) };
