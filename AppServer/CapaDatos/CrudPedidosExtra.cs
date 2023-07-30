@@ -13,6 +13,8 @@ namespace AppServidor.CapaDatos
     public class CrudPedidosExtra
     {
         private string cadenaConexion = string.Empty;
+        protected static SemaphoreSlim _dbSemaforo = new SemaphoreSlim(1, 1);
+
 
         public CrudPedidosExtra()
         {
@@ -21,6 +23,7 @@ namespace AppServidor.CapaDatos
 
         public bool CrearPedidoExtra(PedidoExtra pedidoExtra)
         {
+            _dbSemaforo.Wait();
             bool registroExitoso = false;
             SqlConnection conexion;
             string sentenciaSQL = "INSERT INTO dbo.ExtraPedido (IdPedido, IdPlato, IdExtra)" +
@@ -55,6 +58,7 @@ namespace AppServidor.CapaDatos
                 finally
                 {
                     cmd.Connection?.Close();
+                    _dbSemaforo.Release();
                 }
             }
         }

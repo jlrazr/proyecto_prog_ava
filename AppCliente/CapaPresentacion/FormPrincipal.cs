@@ -1,3 +1,4 @@
+using AppCliente.CapaPresentacion;
 using AppCliente.Forms;
 using Libreria.Clases;
 using Newtonsoft.Json;
@@ -255,7 +256,7 @@ namespace AppCliente
 
         private void button_hacer_pedido_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 bool pedidoExitoso = false;
                 foreach (DataGridViewRow row in dataGridView_platos_elegidos.Rows)
@@ -268,7 +269,8 @@ namespace AppCliente
                         if (response == false)
                         {
                             pedidoExitoso = false;
-                        } else
+                        }
+                        else
                         {
                             pedidoExitoso = true;
                             pedidosRealizados.Add(nuevoPedido);
@@ -283,7 +285,7 @@ namespace AppCliente
 
                     foreach (var plato in platosElegidos)
                     {
-                        if(plato.IdCategoria == extra.IdCategoria)
+                        if (plato.IdCategoria == extra.IdCategoria)
                         {
                             platoLigado = plato;
                             break;
@@ -304,21 +306,29 @@ namespace AppCliente
                     var responseExtra = conexionExtra.GenerarPedidoExtra(nuevoPedidoExtra);
                 }
 
-                if (pedidoExitoso == true) {
+                if (pedidoExitoso == true)
+                {
                     var mensaje_pedidoExitoso = new FormMensaje("Se ha realizado su orden");
                     mensaje_pedidoExitoso.ShowDialog();
 
 
-                } else
+                }
+                else
                 {
                     var mensaje_pedidoFallido = new FormMensaje("Ha ocurrido un error. Por favor inténtelo de nuevo");
                     mensaje_pedidoFallido.ShowDialog();
                 }
-
-            } catch(Exception ex) 
+            }
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
+        }
+
+        private void button_consul_pedidos_Click(object sender, EventArgs e)
+        {
+            var historialPedidos = new FormHistorialPedidos();
+            historialPedidos.ShowDialog();
         }
     }
 }

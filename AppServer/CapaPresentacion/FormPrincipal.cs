@@ -16,7 +16,7 @@ namespace AppServidor
         private bool servidorIniciado = false;
         static Servidor servidor = new Servidor();
         Thread hiloServidor = new Thread(new ThreadStart(servidor.Start));
-        
+
 
         public FormPrincipal()
         {
@@ -107,6 +107,8 @@ namespace AppServidor
                     servidorIniciado = !servidorIniciado;
                     button_servidor_detener.Enabled = true;
                     button_servidor_iniciar.Enabled = false;
+                    textBox_servidor_clientes_conect.Enabled = true;
+                    textBox_servidor_clientes_conect.AppendText("\nServidor iniciado...");
                 }
                 catch (Exception ex)
                 {
@@ -130,6 +132,7 @@ namespace AppServidor
             label_estado_servidor.Text = "Servidor detenido";
             button_servidor_iniciar.Enabled = true;
             button_servidor_detener.Enabled = false;
+            textBox_servidor_clientes_conect.AppendText("\nServidor detenido...");
 
         }
     }

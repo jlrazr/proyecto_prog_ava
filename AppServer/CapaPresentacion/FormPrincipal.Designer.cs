@@ -230,6 +230,7 @@
             // 
             // textBox_servidor_clientes_conect
             // 
+            textBox_servidor_clientes_conect.AcceptsReturn = true;
             textBox_servidor_clientes_conect.Location = new Point(631, 210);
             textBox_servidor_clientes_conect.Multiline = true;
             textBox_servidor_clientes_conect.Name = "textBox_servidor_clientes_conect";
