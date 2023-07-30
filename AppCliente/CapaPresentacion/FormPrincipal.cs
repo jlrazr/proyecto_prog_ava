@@ -96,7 +96,7 @@ namespace AppCliente
             button_anadir_platos.Enabled = false;
             button_anadir_extras.Enabled = false;
             dataGridView_platos_disponibles.DataSource = null;
-            dataGridView_extras_disponibles.DataSource= null;
+            dataGridView_extras_disponibles.DataSource = null;
             dataGridView_platos_elegidos.DataSource = null;
             dataGridView_extras_elegidas.DataSource = null;
             label_cliente.Text = "Cliente:";
@@ -249,6 +249,43 @@ namespace AppCliente
             precioTotal = precioPlatos + precioExtras;
 
             label_precio_total.Text = "Costo del Pedido: " + precioTotal.ToString() + " colones";
+        }
+
+        private void button_hacer_pedido_Click(object sender, EventArgs e)
+        {
+            try 
+            {
+                bool pedidoExitoso = false;
+                foreach (DataGridViewRow row in dataGridView_platos_elegidos.Rows)
+                {
+                    if (row.DataBoundItem is Plato platoSeleccionado)
+                    {
+                        Pedido nuevoPedido = new(clienteActivo.Id, platoSeleccionado.Id);
+                        Conexion conexion = new Conexion();
+                        var response = conexion.GenerarPedido(nuevoPedido);
+                        if (response == false)
+                        {
+                            pedidoExitoso = false;
+                        } else
+                        {
+                            pedidoExitoso = true;
+                        }
+                    }
+                }
+
+                if (pedidoExitoso == true) {
+                    var mensaje_pedidoExitoso = new FormMensaje("Se ha realizado su orden");
+                    mensaje_pedidoExitoso.ShowDialog();
+                } else
+                {
+                    var mensaje_pedidoFallido = new FormMensaje("Ha ocurrido un error. Por favor inténtelo de nuevo");
+                    mensaje_pedidoFallido.ShowDialog();
+                }
+
+            } catch(Exception ex) 
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }

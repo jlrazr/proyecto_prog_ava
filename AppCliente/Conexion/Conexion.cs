@@ -169,4 +169,27 @@ public class Conexion
             return null;
         }
     }
+
+    public bool GenerarPedido(Pedido pedido)
+    {
+        var request = new ServerRequest { ActionType = "CrearPedido", Data = JsonConvert.SerializeObject(pedido) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            Console.WriteLine($"Success: {response.Message}");
+            return true;
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return false;
+        }
+    }
 }

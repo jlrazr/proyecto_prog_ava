@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppServidor.CapaNegocio;
+using AppServidor.CapaDatos;
 
 namespace AppServidor
 {
@@ -166,6 +167,55 @@ namespace AppServidor
                             else
                             {
                                 writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Extras not found for the given IdCategoria" }));
+                            }
+                            break;
+
+                        case "CrearPedido":
+                            Pedido nuevoPedido = JsonConvert.DeserializeObject<Pedido>(clientRequest.Data);
+                            bool esExitoso = new ManagerPedido().Registrar(nuevoPedido);
+                            if (esExitoso)
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = true, Message = "Pedido realizado!" }));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Hubo un error. Por favor inténtelo de nuevo" }));
+                            }
+                            break;
+
+                        case "GetPedidosPorIdCliente":
+                            int idClienteRequested = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            List<Pedido> pedidos = new ManagerPedido().GetPorIdCliente(idClienteRequested);
+                            if (pedidos != null && pedidos.Count > 0)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(pedidos)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Pedidos no encontrados para el cliente solicitado" }));
+                            }
+                            break;
+
+                        case "GetPedidoExtrasPorIdPedido":
+                            int idPedidoRequested = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            List<PedidoExtra> pedidosExtra = new ManagerPedidoExtra().GetPorIdPedido(idPedidoRequested);
+                            if (pedidosExtra != null && pedidosExtra.Count > 0)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(pedidosExtra)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Pedidos de extras no encontrados para el pedido solicitado" }));
                             }
                             break;
 

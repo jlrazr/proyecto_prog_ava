@@ -8,13 +8,11 @@ namespace Libreria.Clases
         public int IdPedido { get; set; }
         public int IdPlato { get; set; }
         public int IdExtra { get; set; }
-        public DateTime FechaPedido { get; set; }
-
 
         // Constructor
-        public PedidoExtra(int idPlato, int idExtra)
+        public PedidoExtra(int idPedido, int idPlato, int idExtra)
         {
-            IdPedido = GeneradorIds.GenerarID();
+            IdPedido = idPedido;
             IdPlato = idPlato;
             IdExtra = idExtra;
         }
