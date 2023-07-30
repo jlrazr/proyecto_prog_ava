@@ -45,5 +45,18 @@ namespace AppServidor.CapaNegocio
                 return null;
             }
         }
+
+        public Pedido GetPorId(int idPedido)
+        {
+            try
+            {
+                return crudPedidos.ObtenerPedidoPorId(idPedido);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

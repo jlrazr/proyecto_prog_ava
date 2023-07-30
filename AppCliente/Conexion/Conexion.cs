@@ -126,6 +126,28 @@ public class Conexion
         }
     }
 
+    public Pedido FetchPedidoById(int idPedido)
+    {
+        var request = new ServerRequest { ActionType = "GetPedidoPorId", Data = JsonConvert.SerializeObject(idPedido) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            return JsonConvert.DeserializeObject<Pedido>(response.Data);
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return null;
+        }
+    }
+
     public List<RestaurantePlato> FetchCategoriasByIdPlato(int idPlato)
     {
         var request = new ServerRequest { ActionType = "GetCategoriasByIdPlato", Data = JsonConvert.SerializeObject(idPlato) };
@@ -161,6 +183,50 @@ public class Conexion
         if (response.Success)
         {
             return JsonConvert.DeserializeObject<List<Extra>>(response.Data);
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return null;
+        }
+    }
+
+    public Extra FetchExtraPorId(int idExtra)
+    {
+        var request = new ServerRequest { ActionType = "GetExtraPorId", Data = JsonConvert.SerializeObject(idExtra) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            return JsonConvert.DeserializeObject<Extra>(response.Data);
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return null;
+        }
+    }
+
+    public List<PedidoExtra> FetchPedidoExtrasPorIdPedido(int idPedido)
+    {
+        var request = new ServerRequest { ActionType = "GetPedidoExtrasPorIdPedido", Data = JsonConvert.SerializeObject(idPedido) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            return JsonConvert.DeserializeObject<List<PedidoExtra>>(response.Data);
         }
         else
         {

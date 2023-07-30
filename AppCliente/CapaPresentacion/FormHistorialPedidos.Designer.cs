@@ -35,7 +35,7 @@
             dataGridView_historial_extras_pedido = new DataGridView();
             label3 = new Label();
             label4 = new Label();
-            button1 = new Button();
+            button_historial_consultar_porId = new Button();
             comboBox_historial_lista_pedidos = new ComboBox();
             label5 = new Label();
             label6 = new Label();
@@ -109,14 +109,15 @@
             label4.TabIndex = 6;
             label4.Text = "Extras del Pedido";
             // 
-            // button1
+            // button_historial_consultar_porId
             // 
-            button1.Location = new Point(12, 112);
-            button1.Name = "button1";
-            button1.Size = new Size(203, 34);
-            button1.TabIndex = 7;
-            button1.Text = "Consultar por ID";
-            button1.UseVisualStyleBackColor = true;
+            button_historial_consultar_porId.Location = new Point(12, 112);
+            button_historial_consultar_porId.Name = "button_historial_consultar_porId";
+            button_historial_consultar_porId.Size = new Size(203, 34);
+            button_historial_consultar_porId.TabIndex = 7;
+            button_historial_consultar_porId.Text = "Consultar por ID";
+            button_historial_consultar_porId.UseVisualStyleBackColor = true;
+            button_historial_consultar_porId.Click += button_historial_consultar_porId_Click;
             // 
             // comboBox_historial_lista_pedidos
             // 
@@ -182,7 +183,7 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(comboBox_historial_lista_pedidos);
-            Controls.Add(button1);
+            Controls.Add(button_historial_consultar_porId);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(dataGridView_historial_extras_pedido);
@@ -192,6 +193,7 @@
             Controls.Add(label1);
             Name = "FormHistorialPedidos";
             Text = "Historial de Pedidos";
+            Shown += FormHistorialPedidos_Shown;
             ((System.ComponentModel.ISupportInitialize)dataGridView_historial_platos_pedido).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_historial_extras_pedido).EndInit();
             ResumeLayout(false);
@@ -207,7 +209,7 @@
         private DataGridView dataGridView_historial_extras_pedido;
         private Label label3;
         private Label label4;
-        private Button button1;
+        private Button button_historial_consultar_porId;
         private ComboBox comboBox_historial_lista_pedidos;
         private Label label5;
         private Label label6;

@@ -214,9 +214,41 @@ namespace AppServidor
                             }
                             break;
 
+                        case "GetPedidoPorId":
+                            int idPedido = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            Pedido pedido = new ManagerPedido().GetPorId(idPedido);
+                            if (pedido != null)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(pedido)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Pedido no encontrado" }));
+                            }
+                            break;
 
-
-
+                        case "GetExtraPorId":
+                            int idExtra = JsonConvert.DeserializeObject<int>(clientRequest.Data);
+                            Extra extra = new ManagerExtra().GetPorId(idExtra);
+                            if (extra != null)
+                            {
+                                var response = new ServerResponse
+                                {
+                                    Success = true,
+                                    Data = JsonConvert.SerializeObject(extra)
+                                };
+                                writer.WriteLine(JsonConvert.SerializeObject(response));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Extra no encontrada" }));
+                            }
+                            break;
 
                         case "GetPedidoExtrasPorIdPedido":
                             int idPedidoRequested = JsonConvert.DeserializeObject<int>(clientRequest.Data);
