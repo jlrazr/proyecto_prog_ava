@@ -192,4 +192,27 @@ public class Conexion
             return false;
         }
     }
+
+    public bool GenerarPedidoExtra(PedidoExtra pedidoExtra)
+    {
+        var request = new ServerRequest { ActionType = "CrearPedidoExtra", Data = JsonConvert.SerializeObject(pedidoExtra) };
+        using var writer = new StreamWriter(client.GetStream());
+        using var reader = new StreamReader(client.GetStream());
+        writer.WriteLine(JsonConvert.SerializeObject(request));
+        writer.Flush();
+
+        var responseJson = reader.ReadLine();
+        var response = JsonConvert.DeserializeObject<ServerResponse>(responseJson);
+        if (response.Success)
+        {
+            Console.WriteLine($"Success: {response.Message}");
+            return true;
+        }
+        else
+        {
+            // Handle error
+            Console.WriteLine($"Error: {response.Message}");
+            return false;
+        }
+    }
 }

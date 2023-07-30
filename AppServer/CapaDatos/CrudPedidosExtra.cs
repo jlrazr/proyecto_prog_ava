@@ -23,7 +23,7 @@ namespace AppServidor.CapaDatos
         {
             bool registroExitoso = false;
             SqlConnection conexion;
-            string sentenciaSQL = "INSERT INTO dbo.Extra (IdPedido, IdPlato, IdExtra)" +
+            string sentenciaSQL = "INSERT INTO dbo.ExtraPedido (IdPedido, IdPlato, IdExtra)" +
                                                  "VALUES (@IdPedido, @IdPlato, @IdExtra)";
 
             SqlCommand cmd = new SqlCommand();

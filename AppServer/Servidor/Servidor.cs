@@ -201,6 +201,23 @@ namespace AppServidor
                             }
                             break;
 
+                        case "CrearPedidoExtra":
+                            PedidoExtra nuevoPedidoExtra = JsonConvert.DeserializeObject<PedidoExtra>(clientRequest.Data);
+                            bool exitoso = new ManagerPedidoExtra().Registrar(nuevoPedidoExtra);
+                            if (exitoso)
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = true, Message = "Pedido de extras realizado!" }));
+                            }
+                            else
+                            {
+                                writer.WriteLine(JsonConvert.SerializeObject(new ServerResponse { Success = false, Message = "Hubo un error. Por favor inténtelo de nuevo" }));
+                            }
+                            break;
+
+
+
+
+
                         case "GetPedidoExtrasPorIdPedido":
                             int idPedidoRequested = JsonConvert.DeserializeObject<int>(clientRequest.Data);
                             List<PedidoExtra> pedidosExtra = new ManagerPedidoExtra().GetPorIdPedido(idPedidoRequested);

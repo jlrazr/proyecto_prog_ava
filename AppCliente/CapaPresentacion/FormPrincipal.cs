@@ -26,6 +26,7 @@ namespace AppCliente
         private int precioPlatos = 0;
         private int precioExtras = 0;
         private int precioTotal = 0;
+        private List<Pedido> pedidosRealizados = new();
 
 
         private void button_cliente_login_Click(object sender, EventArgs e)
@@ -104,6 +105,7 @@ namespace AppCliente
             button_hacer_pedido.Enabled = false;
             comboBox_lista_restaurantes.Enabled = false;
             comboBox_lista_restaurantes.DataSource = new List<Restaurante>();
+            pedidosRealizados = new List<Pedido>();
         }
 
         private void comboBox_lista_restaurantes_SelectedIndexChanged(object sender, EventArgs e)
@@ -269,13 +271,44 @@ namespace AppCliente
                         } else
                         {
                             pedidoExitoso = true;
+                            pedidosRealizados.Add(nuevoPedido);
                         }
                     }
+                }
+
+                foreach (Extra extra in extrasElegidas)
+                {
+                    Plato platoLigado = new("", 0, 0);
+                    Pedido pedidoLigado = new(0, 0);
+
+                    foreach (var plato in platosElegidos)
+                    {
+                        if(plato.IdCategoria == extra.IdCategoria)
+                        {
+                            platoLigado = plato;
+                            break;
+                        }
+                    }
+
+                    foreach (var pedido in pedidosRealizados)
+                    {
+                        if (pedido.IdPlato == platoLigado.Id)
+                        {
+                            pedidoLigado = pedido;
+                            break;
+                        }
+                    }
+
+                    PedidoExtra nuevoPedidoExtra = new(pedidoLigado.IdPedido, platoLigado.Id, extra.Id);
+                    Conexion conexionExtra = new Conexion();
+                    var responseExtra = conexionExtra.GenerarPedidoExtra(nuevoPedidoExtra);
                 }
 
                 if (pedidoExitoso == true) {
                     var mensaje_pedidoExitoso = new FormMensaje("Se ha realizado su orden");
                     mensaje_pedidoExitoso.ShowDialog();
+
+
                 } else
                 {
                     var mensaje_pedidoFallido = new FormMensaje("Ha ocurrido un error. Por favor inténtelo de nuevo");
